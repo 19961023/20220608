@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缝纫作业辅助工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .input-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-item label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .input-item input, .input-item select {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-item input:focus, .input-item select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .input-item .unit {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 15px;
+            -webkit-appearance: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+        }
+
+        .result-section {
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .summary-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .summary-item .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .summary-item .label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .piece-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .piece-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .piece-visual {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            flex-shrink: 0;
+        }
+
+        .piece-visual svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .piece-info {
+            flex: 1;
+        }
+
+        .piece-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .piece-size {
+            font-size: 0.9rem;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .piece-count {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tips-list li::before {
+            content: '💡';
+            flex-shrink: 0;
+        }
+
+        .diagram-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .diagram-piece {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .diagram-piece canvas {
+            max-width: 100%;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .diagram-piece .name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .diagram-piece .size {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .product-type-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .type-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            -webkit-appearance: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .type-btn.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .type-btn:hover:not(.active) {
+            border-color: #667eea;
+        }
+
+        .type-btn:active:not(.active) {
+            background: #f0f0f0;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .piece-item {
+                flex-wrap: wrap;
+            }
+
+            .piece-visual {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧵 缝纫作业辅助工具</h1>
+            <p>输入尺寸，自动计算裁剪方案</p>
+        </header>
+
+        <div class="card">
+            <div class="card-title">选择产品类型</div>
+            <div class="product-type-selector">
+                <button type="button" class="type-btn active" data-type="bag">📦 手提包</button>
+                <button type="button" class="type-btn" data-type="pouch">👜 化妆包</button>
+                <button type="button" class="type-btn" data-type="box">🎁 收纳盒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">输入尺寸参数</div>
+            <div class="input-group">
+                <div class="input-item">
+                    <label>长度</label>
+                    <input type="number" id="length" value="20" min="1" step="0.5">
+                    <span class="unit">厘米</span>
+                </div>
+                <div class="input-item">
+                    <label>高度</label>
+                    <input type="number" id="height" value="20" min="1" step="0.5">
+                    <span class="unit">厘米</span>
+                </div>
+                <div class="input-item">
+                    <label>宽度</label>
+                    <input type="number" id="width" value="10" min="1" step="0.5">
+                    <span class="unit">厘米</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">缝纫参数设置</div>
+            <div class="input-group">
+                <div class="input-item">
+                    <label>缝份</label>
+                    <input type="number" id="seamAllowance" value="1" min="0.5" max="3" step="0.5">
+                    <span class="unit">厘米（推荐1-1.5cm）</span>
+                </div>
+                <div class="input-item">
+                    <label>提手长度</label>
+                    <input type="number" id="handleLength" value="30" min="10" step="5">
+                    <span class="unit">厘米（可选）</span>
+                </div>
+                <div class="input-item">
+                    <label>提手宽度</label>
+                    <input type="number" id="handleWidth" value="4" min="2" max="8" step="0.5">
+                    <span class="unit">厘米</span>
+                </div>
+            </div>
+            <button type="button" class="btn" id="calculateBtn">📐 计算裁剪方案</button>
+        </div>
+
+        <div class="result-section" id="resultSection">
+            <div class="card">
+                <div class="card-title">材料用量统计</div>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div class="value" id="totalArea">0</div>
+                        <div class="label">总布料面积 (cm²)</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="value" id="pieceCount">0</div>
+                        <div class="label">裁片总数</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="value" id="seamLength">0</div>
+                        <div class="label">缝线长度 (cm)</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="value" id="fabricWidth">0</div>
+                        <div class="label">建议布料宽度 (cm)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">裁片详情</div>
+                <div class="piece-list" id="pieceList"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">裁片示意图</div>
+                <div class="diagram-container" id="diagramContainer"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">缝纫提示</div>
+                <ul class="tips-list" id="tipsList"></ul>
+            </div>
+        </div>
+
+        <footer>
+            缝纫作业辅助工具 © 2024
+        </footer>
+    </div>
+
+    <script>
+        let currentProductType = 'bag';
+
+        function selectProductType(type) {
+            currentProductType = type;
+            document.querySelectorAll('.type-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.type === type) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const defaultSizes = {
+                bag: { length: 20, height: 20, width: 10 },
+                pouch: { length: 15, height: 10, width: 8 },
+                box: { length: 25, height: 15, width: 15 }
+            };
+
+            const sizes = defaultSizes[type];
+            document.getElementById('length').value = sizes.length;
+            document.getElementById('height').value = sizes.height;
+            document.getElementById('width').value = sizes.width;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.type-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    selectProductType(this.dataset.type);
+                });
+                btn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    selectProductType(this.dataset.type);
+                });
+            });
+
+            var calculateBtn = document.getElementById('calculateBtn');
+            if (calculateBtn) {
+                calculateBtn.addEventListener('click', calculate);
+                calculateBtn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    calculate();
+                });
+            }
+
+            document.querySelectorAll('input[type="number"]').forEach(function(input) {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        calculate();
+                    }
+                });
+            });
+        });
+
+        function calculate() {
+            const length = parseFloat(document.getElementById('length').value) || 0;
+            const height = parseFloat(document.getElementById('height').value) || 0;
+            const width = parseFloat(document.getElementById('width').value) || 0;
+            const seam = parseFloat(document.getElementById('seamAllowance').value) || 1;
+            const handleLength = parseFloat(document.getElementById('handleLength').value) || 30;
+            const handleWidth = parseFloat(document.getElementById('handleWidth').value) || 4;
+
+            if (length <= 0 || height <= 0 || width <= 0) {
+                alert('请输入有效的尺寸参数！');
+                return;
+            }
+
+            const pieces = calculatePieces(length, height, width, seam, handleLength, handleWidth);
+            displayResults(pieces, length, height, width, seam);
+        }
+
+        function calculatePieces(l, h, w, seam, handleL, handleW) {
+            const pieces = [];
+
+            pieces.push({
+                name: '前片',
+                count: 1,
+                width: l + seam * 2,
+                height: h + seam * 2,
+                description: '包包正面',
+                color: '#667eea'
+            });
+
+            pieces.push({
+                name: '后片',
+                count: 1,
+                width: l + seam * 2,
+                height: h + seam * 2,
+                description: '包包背面',
+                color: '#764ba2'
+            });
+
+            pieces.push({
+                name: '左侧片',
+                count: 1,
+                width: w + seam * 2,
+                height: h + seam * 2,
+                description: '包包左侧',
+                color: '#f093fb'
+            });
+
+            pieces.push({
+                name: '右侧片',
+                count: 1,
+                width: w + seam * 2,
+                height: h + seam * 2,
+                description: '包包右侧',
+                color: '#f5576c'
+            });
+
+            pieces.push({
+                name: '底片',
+                count: 1,
+                width: l + seam * 2,
+                height: w + seam * 2,
+                description: '包包底部',
+                color: '#4facfe'
+            });
+
+            if (currentProductType === 'bag') {
+                pieces.push({
+                    name: '提手',
+                    count: 2,
+                    width: handleL + seam * 2,
+                    height: handleW + seam * 2,
+                    description: '手提部分',
+                    color: '#43e97b'
+                });
+            }
+
+            pieces.push({
+                name: '里布前片',
+                count: 1,
+                width: l + seam * 2,
+                height: h + seam * 2,
+                description: '内衬正面',
+                color: '#fa709a'
+            });
+
+            pieces.push({
+                name: '里布后片',
+                count: 1,
+                width: l + seam * 2,
+                height: h + seam * 2,
+                description: '内衬背面',
+                color: '#fee140'
+            });
+
+            return pieces;
+        }
+
+        function displayResults(pieces, l, h, w, seam) {
+            document.getElementById('resultSection').classList.add('show');
+
+            let totalArea = 0;
+            let totalPieces = 0;
+            let totalSeamLength = 0;
+
+            pieces.forEach(piece => {
+                totalArea += piece.width * piece.height * piece.count;
+                totalPieces += piece.count;
+                totalSeamLength += (piece.width + piece.height) * 2 * piece.count;
+            });
+
+            document.getElementById('totalArea').textContent = totalArea.toFixed(0);
+            document.getElementById('pieceCount').textContent = totalPieces;
+
+            const seamLength = (l + w) * 2 + h * 4;
+            document.getElementById('seamLength').textContent = (seamLength * 2).toFixed(0);
+
+            const maxWidth = Math.max(...pieces.map(p => p.width));
+            document.getElementById('fabricWidth').textContent = maxWidth.toFixed(1);
+
+            const pieceList = document.getElementById('pieceList');
+            pieceList.innerHTML = pieces.map(piece => `
+                <div class="piece-item">
+                    <div class="piece-visual" style="border-color: ${piece.color}">
+                        <svg viewBox="0 0 40 40">
+                            <rect x="5" y="5" width="30" height="30" fill="${piece.color}" opacity="0.3" stroke="${piece.color}" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="piece-info">
+                        <div class="piece-name">${piece.name}</div>
+                        <div class="piece-size">${piece.width.toFixed(1)} × ${piece.height.toFixed(1)} cm</div>
+                        <div style="font-size: 0.8rem; color: #999; margin-top: 3px;">${piece.description}</div>
+                    </div>
+                    <span class="piece-count">×${piece.count}</span>
+                </div>
+            `).join('');
+
+            drawDiagrams(pieces);
+
+            const tips = generateTips(l, h, w, seam);
+            document.getElementById('tipsList').innerHTML = tips.map(tip => `<li>${tip}</li>`).join('');
+
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function drawDiagrams(pieces) {
+            const container = document.getElementById('diagramContainer');
+            container.innerHTML = '';
+
+            pieces.forEach(piece => {
+                const div = document.createElement('div');
+                div.className = 'diagram-piece';
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 120;
+                canvas.height = 120;
+
+                const ctx = canvas.getContext('2d');
+                drawPieceDiagram(ctx, piece, 120, 120);
+
+                div.appendChild(canvas);
+                div.innerHTML += `
+                    <div class="name">${piece.name}</div>
+                    <div class="size">${piece.width.toFixed(1)} × ${piece.height.toFixed(1)} cm</div>
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        function drawPieceDiagram(ctx, piece, canvasWidth, canvasHeight) {
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            const padding = 15;
+            const maxWidth = canvasWidth - padding * 2;
+            const maxHeight = canvasHeight - padding * 2;
+
+            const scale = Math.min(maxWidth / piece.width, maxHeight / piece.height);
+            const drawWidth = piece.width * scale;
+            const drawHeight = piece.height * scale;
+
+            const x = (canvasWidth - drawWidth) / 2;
+            const y = (canvasHeight - drawHeight) / 2;
+
+            ctx.fillStyle = piece.color + '30';
+            ctx.strokeStyle = piece.color;
+            ctx.lineWidth = 2;
+
+            ctx.fillRect(x, y, drawWidth, drawHeight);
+            ctx.strokeRect(x, y, drawWidth, drawHeight);
+
+            ctx.fillStyle = '#333';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(`${piece.width.toFixed(0)}`, canvasWidth / 2, y + drawHeight + 12);
+
+            ctx.save();
+            ctx.translate(x - 5, canvasHeight / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText(`${piece.height.toFixed(0)}`, 0, 0);
+            ctx.restore();
+        }
+
+        function generateTips(l, h, w, seam) {
+            const tips = [];
+
+            tips.push(`裁剪前请先预洗布料，防止成品缩水变形。`);
+
+            tips.push(`建议使用裁剪轮刀或锋利剪刀，确保边缘整齐。`);
+
+            tips.push(`缝份已设置为 ${seam}cm，可根据实际需要调整。`);
+
+            tips.push(`缝制顺序建议：先缝合侧片与前后片，再缝合底部。`);
+
+            tips.push(`转角处可剪小口（不要剪断缝线），使翻面后更平整。`);
+
+            tips.push(`里布尺寸可与表布相同，或略小0.5cm使成品更挺括。`);
+
+            if (currentProductType === 'bag') {
+                tips.push(`提手建议使用双层布料或加衬，增加承重能力。`);
+            }
+
+            tips.push(`建议预留5%-10%的额外布料以备不时之需。`);
+
+            return tips;
+        }
+    </script>
+</body>
+</html>
