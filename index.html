@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>缝纫作业辅助工具</title>
     <style>
         * {
@@ -111,6 +111,7 @@
             font-size: 1.1rem;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
             touch-action: manipulation;
             transition: transform 0.2s, box-shadow 0.2s;
             margin-top: 15px;
@@ -299,6 +300,7 @@
             border-radius: 10px;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
             touch-action: manipulation;
             -webkit-appearance: none;
             transition: all 0.3s;
@@ -487,19 +489,11 @@
                 btn.addEventListener('click', function() {
                     selectProductType(this.dataset.type);
                 });
-                btn.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    selectProductType(this.dataset.type);
-                });
             });
 
             var calculateBtn = document.getElementById('calculateBtn');
             if (calculateBtn) {
                 calculateBtn.addEventListener('click', calculate);
-                calculateBtn.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    calculate();
-                });
             }
 
             document.querySelectorAll('input[type="number"]').forEach(function(input) {
@@ -664,17 +658,28 @@
                 div.className = 'diagram-piece';
 
                 const canvas = document.createElement('canvas');
-                canvas.width = 120;
-                canvas.height = 120;
+                const dpr = window.devicePixelRatio || 1;
+                const displaySize = 120;
+                canvas.width = displaySize * dpr;
+                canvas.height = displaySize * dpr;
+                canvas.style.width = displaySize + 'px';
+                canvas.style.height = displaySize + 'px';
 
                 const ctx = canvas.getContext('2d');
-                drawPieceDiagram(ctx, piece, 120, 120);
+                ctx.scale(dpr, dpr);
+                drawPieceDiagram(ctx, piece, displaySize, displaySize);
 
                 div.appendChild(canvas);
-                div.innerHTML += `
-                    <div class="name">${piece.name}</div>
-                    <div class="size">${piece.width.toFixed(1)} × ${piece.height.toFixed(1)} cm</div>
-                `;
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = piece.name;
+                div.appendChild(nameDiv);
+
+                const sizeDiv = document.createElement('div');
+                sizeDiv.className = 'size';
+                sizeDiv.textContent = `${piece.width.toFixed(1)} × ${piece.height.toFixed(1)} cm`;
+                div.appendChild(sizeDiv);
 
                 container.appendChild(div);
             });
