@@ -976,8 +976,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadPreferences();
 
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js');
+            if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+                navigator.serviceWorker.register('sw.js').catch(function(){});
             }
 
             document.querySelectorAll('.type-btn').forEach(function(btn) {
@@ -1066,7 +1066,7 @@
 
             function defaultBoxPieces() {
                 const p = [];
-                const a = (n,c,pw,ph,d,cl) => add(n,c,pw,ph,d,cl,'rect');
+                const a = (n,c,pw,ph,d,cl) => p.push({name:n, count:c, width:pw, height:ph, description:d, color:cl, shape:'rect'});
                 a('前片',1,l+seam*2,h+seam*2,'包包正面','#667eea');
                 a('后片',1,l+seam*2,h+seam*2,'包包背面','#764ba2');
                 a('左侧片',1,w+seam*2,h+seam*2,'包包左侧','#f093fb');
