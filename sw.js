@@ -1,7 +1,8 @@
-var CACHE_NAME = 'sewing-v2';
+var CACHE_NAME = 'sewing-v3';
 var CACHE_URLS = [
     'index.html',
     'manifest.json',
+    'icon.svg',
     'icon-192.png',
     'icon-512.png'
 ];

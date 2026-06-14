@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Icon Converter</title></head><body>
+<canvas id="c" width="512" height="512"></canvas>
+<div id="status"></div>
+<script>
+async function convert(size) {
+    const img = new Image();
+    img.src = 'icon.svg';
+    await new Promise((r, rej) => { img.onload = r; img.onerror = rej; });
+    const canvas = document.getElementById('c');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, size, size);
+    const a = document.createElement('a');
+    a.download = 'icon-' + size + '.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+    const p = document.createElement('p');
+    p.textContent = '✓ Downloaded icon-' + size + '.png';
+    document.getElementById('status').appendChild(p);
+}
+convert(192).then(() => convert(512)).catch(e => {
+    document.getElementById('status').textContent = 'Error: ' + e.message + '. Make sure icon.svg is in the same folder.';
+});
+</script>
+</body></html>
