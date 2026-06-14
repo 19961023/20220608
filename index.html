@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="manifest" href="manifest.json">
     <title>缝纫作业辅助工具</title>
     <style>
         * {
@@ -285,16 +286,13 @@
         }
 
         .product-type-selector {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
         }
 
         .type-btn {
-            flex: 1;
-            min-width: 100px;
-            padding: 12px;
+            padding: 10px 6px;
             border: 2px solid #e0e0e0;
             background: white;
             border-radius: 10px;
@@ -304,7 +302,9 @@
             touch-action: manipulation;
             -webkit-appearance: none;
             transition: all 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
+            text-align: center;
+            white-space: nowrap;
         }
 
         .type-btn.active {
@@ -350,9 +350,278 @@
                 flex-wrap: wrap;
             }
 
-            .piece-visual {
-                width: 50px;
-                height: 50px;
+            .product-type-selector {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .history-header .arrow {
+            transition: transform 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .history-card.collapsed .history-list {
+            display: none;
+        }
+
+        .history-card.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+
+        .history-list {
+            margin-top: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .history-item .hi-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .history-item .hi-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .history-item .hi-dims {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .history-item .hi-meta {
+            color: #999;
+            font-size: 0.75rem;
+            margin-top: 2px;
+        }
+
+        .history-item .hi-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .hi-btn {
+            padding: 4px 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .hi-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .hi-btn.danger:hover {
+            border-color: #f5576c;
+            color: #f5576c;
+        }
+
+        .history-empty {
+            text-align: center;
+            color: #999;
+            font-size: 0.85rem;
+            padding: 15px;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .btn-outline:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-outline:active {
+            background: #5a6fd6;
+        }
+
+        .print-header {
+            display: none;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .custom-piece-item {
+            display: grid;
+            grid-template-columns: 2fr 40px 1fr 1fr 80px 30px;
+            gap: 6px;
+            align-items: center;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .custom-piece-item input, .custom-piece-item select {
+            padding: 6px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            width: 100%;
+        }
+
+        .custom-piece-item input:focus, .custom-piece-item select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-add-piece {
+            width: 100%;
+            padding: 10px;
+            border: 2px dashed #ccc;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #667eea;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-add-piece:hover {
+            border-color: #667eea;
+            background: #f5f0ff;
+        }
+
+        .btn-remove-piece {
+            background: none;
+            border: none;
+            color: #f5576c;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 2px;
+        }
+
+        .btn-remove-piece:hover {
+            color: #d6334a;
+        }
+
+        @media (max-width: 480px) {
+            .custom-piece-item {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            header, .history-card, .export-buttons, footer, .no-print,
+            .product-type-selector, .btn, .type-btn, .btn-add-piece {
+                display: none !important;
+            }
+
+            .result-section {
+                display: block !important;
+                animation: none;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                break-inside: avoid;
+                margin-bottom: 10px;
+                padding: 12px;
+                border-radius: 6px;
+            }
+
+            .card-title {
+                border-bottom-color: #999;
+                font-size: 1rem;
+            }
+
+            .card-title::before {
+                background: #999;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .summary-item {
+                background: #f5f5f5;
+                border: 1px solid #ddd;
+            }
+
+            .summary-item .value {
+                color: #333;
+            }
+
+            .piece-item {
+                background: white;
+                border: 1px solid #ddd;
+                border-left-width: 4px;
+            }
+
+            .piece-count {
+                background: #666;
+            }
+
+            .diagram-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .diagram-piece canvas {
+                border: 1px solid #ddd;
+            }
+
+            .print-header {
+                display: block;
+            }
+
+            @page {
+                margin: 15mm;
             }
         }
     </style>
@@ -364,16 +633,22 @@
             <p>输入尺寸，自动计算裁剪方案</p>
         </header>
 
-        <div class="card">
+        <div class="card no-print">
             <div class="card-title">选择产品类型</div>
             <div class="product-type-selector">
                 <button type="button" class="type-btn active" data-type="bag">📦 手提包</button>
+                <button type="button" class="type-btn" data-type="tote">🛍️ 托特包</button>
                 <button type="button" class="type-btn" data-type="pouch">👜 化妆包</button>
+                <button type="button" class="type-btn" data-type="pencil">✏️ 笔袋</button>
+                <button type="button" class="type-btn" data-type="drawstring">🎒 束口袋</button>
+                <button type="button" class="type-btn" data-type="cupsleeve">☕ 杯套</button>
+                <button type="button" class="type-btn" data-type="potholder">🧤 隔热垫</button>
                 <button type="button" class="type-btn" data-type="box">🎁 收纳盒</button>
+                <button type="button" class="type-btn" data-type="custom">🔧 自定义</button>
             </div>
         </div>
 
-        <div class="card">
+        <div class="card no-print">
             <div class="card-title">输入尺寸参数</div>
             <div class="input-group">
                 <div class="input-item">
@@ -394,7 +669,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="card no-print">
             <div class="card-title">缝纫参数设置</div>
             <div class="input-group">
                 <div class="input-item">
@@ -412,8 +687,29 @@
                     <input type="number" id="handleWidth" value="4" min="2" max="8" step="0.5">
                     <span class="unit">厘米</span>
                 </div>
+                <div class="input-item">
+                    <label>布幅宽度</label>
+                    <input type="number" id="fabricWidthInput" value="110" min="30" step="5">
+                    <span class="unit">厘米（用于排版计算）</span>
+                </div>
             </div>
             <button type="button" class="btn" id="calculateBtn">📐 计算裁剪方案</button>
+        </div>
+
+        <div class="card no-print" id="customEditorCard" style="display:none;">
+            <div class="card-title">裁片编辑器</div>
+            <div class="custom-piece-list" id="customPieceList"></div>
+            <button type="button" class="btn-add-piece" id="addPieceBtn">+ 添加裁片</button>
+        </div>
+
+        <div class="card history-card collapsed" id="historyCard">
+            <div class="card-title history-header" id="historyToggle">
+                <span>📋 历史记录</span>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="history-list" id="historyList">
+                <div class="history-empty">暂无历史记录，计算后自动保存</div>
+            </div>
         </div>
 
         <div class="result-section" id="resultSection">
@@ -453,38 +749,237 @@
                 <div class="card-title">缝纫提示</div>
                 <ul class="tips-list" id="tipsList"></ul>
             </div>
+
+            <div class="export-buttons">
+                <button type="button" class="btn-outline" onclick="window.print()">🖨️ 打印方案</button>
+                <button type="button" class="btn-outline" id="copyListBtn">📋 复制裁片清单</button>
+            </div>
         </div>
 
+        <div class="print-header">缝纫裁片方案 · <span id="printProductType"></span> · <span id="printDate"></span></div>
+
         <footer>
-            缝纫作业辅助工具 © 2024
+            缝纫作业辅助工具 © 2026
         </footer>
     </div>
 
     <script>
         let currentProductType = 'bag';
 
-        function selectProductType(type) {
+        const HISTORY_KEY = 'sewing_history';
+        const PREFS_KEY = 'sewing_preferences';
+        const MAX_HISTORY = 20;
+
+        const PRODUCT_CONFIG = {
+            bag:      { name:'手提包', icon:'📦', defaults:{length:20,height:20,width:10}, hasHandles:true,  hasLining:true },
+            tote:     { name:'托特包', icon:'🛍️', defaults:{length:30,height:28,width:14}, hasHandles:true,  hasLining:true, handleDefaults:{length:35,width:5} },
+            pouch:    { name:'化妆包', icon:'👜', defaults:{length:15,height:10,width:8},  hasHandles:false, hasLining:true },
+            pencil:   { name:'笔袋',   icon:'✏️', defaults:{length:20,height:6,width:5},   hasHandles:false, hasLining:true, sideShape:'trapezoid' },
+            drawstring:{name:'束口袋', icon:'🎒', defaults:{length:12,height:20,width:12}, hasHandles:false, hasLining:true, bottomShape:'circle' },
+            cupsleeve:{ name:'杯套',   icon:'☕', defaults:{length:8,height:10,width:8},   hasHandles:false, hasLining:false, bottomShape:'circle' },
+            potholder:{ name:'隔热垫', icon:'🧤', defaults:{length:20,height:20,width:0}, hasHandles:false, hasLining:false, flat:true },
+            box:      { name:'收纳盒', icon:'🎁', defaults:{length:25,height:15,width:15}, hasHandles:false, hasLining:true },
+            custom:   { name:'自定义', icon:'🔧', defaults:{length:20,height:20,width:10}, hasHandles:true,  hasLining:true, isCustom:true }
+        };
+
+        let customPieces = [];
+
+        function getTypeLabel(type) {
+            const cfg = PRODUCT_CONFIG[type];
+            return cfg ? cfg.icon + ' ' + cfg.name : type;
+        }
+
+        function savePreferences() {
+            const prefs = {
+                productType: currentProductType,
+                length: document.getElementById('length').value,
+                height: document.getElementById('height').value,
+                width: document.getElementById('width').value,
+                seam: document.getElementById('seamAllowance').value,
+                handleLength: document.getElementById('handleLength').value,
+                handleWidth: document.getElementById('handleWidth').value,
+                fabricWidth: document.getElementById('fabricWidthInput').value
+            };
+            localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+        }
+
+        function loadPreferences() {
+            try {
+                const raw = localStorage.getItem(PREFS_KEY);
+                if (!raw) return false;
+                const prefs = JSON.parse(raw);
+                if (prefs.productType) {
+                    selectProductType(prefs.productType, true);
+                }
+                if (prefs.length) document.getElementById('length').value = prefs.length;
+                if (prefs.height) document.getElementById('height').value = prefs.height;
+                if (prefs.width) document.getElementById('width').value = prefs.width;
+                if (prefs.seam) document.getElementById('seamAllowance').value = prefs.seam;
+                if (prefs.handleLength) document.getElementById('handleLength').value = prefs.handleLength;
+                if (prefs.handleWidth) document.getElementById('handleWidth').value = prefs.handleWidth;
+                if (prefs.fabricWidth) document.getElementById('fabricWidthInput').value = prefs.fabricWidth;
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        function saveToHistory(params, summary) {
+            const record = {
+                id: Date.now(),
+                productType: currentProductType,
+                params: params,
+                summary: summary,
+                savedAt: new Date().toISOString()
+            };
+            let history;
+            try {
+                history = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+            } catch (e) {
+                history = [];
+            }
+            const existingIdx = history.findIndex(h =>
+                h.productType === record.productType &&
+                JSON.stringify(h.params) === JSON.stringify(record.params)
+            );
+            if (existingIdx !== -1) {
+                history.splice(existingIdx, 1);
+            }
+            history.unshift(record);
+            if (history.length > MAX_HISTORY) {
+                history = history.slice(0, MAX_HISTORY);
+            }
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        }
+
+        function loadHistory() {
+            try {
+                return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('historyList');
+            const history = loadHistory();
+            const typeLabels = {};
+            for (const [k, v] of Object.entries(PRODUCT_CONFIG)) {
+                typeLabels[k] = v.icon + ' ' + v.name;
+            }
+
+            if (history.length === 0) {
+                list.innerHTML = '<div class="history-empty">暂无历史记录，计算后自动保存</div>';
+                return;
+            }
+
+            list.innerHTML = history.map((r, i) => {
+                const d = new Date(r.savedAt);
+                const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+                return `
+                    <div class="history-item">
+                        <span class="hi-icon">${typeLabels[r.productType] ? typeLabels[r.productType].charAt(0) : '📦'}</span>
+                        <div class="hi-info">
+                            <div class="hi-dims">${typeLabels[r.productType] || r.productType} · ${r.params.length}×${r.params.height}×${r.params.width}cm</div>
+                            <div class="hi-meta">${dateStr} · ${r.summary.pieceCount}片 · ${r.summary.totalArea}cm²</div>
+                        </div>
+                        <div class="hi-actions">
+                            <button class="hi-btn load-btn" data-idx="${i}">加载</button>
+                            <button class="hi-btn danger del-btn" data-idx="${i}">删除</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            list.querySelectorAll('.load-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    loadHistoryRecord(parseInt(this.dataset.idx));
+                });
+            });
+            list.querySelectorAll('.del-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    deleteHistory(parseInt(this.dataset.idx));
+                });
+            });
+        }
+
+        function loadHistoryRecord(idx) {
+            const history = loadHistory();
+            const r = history[idx];
+            if (!r) return;
+            selectProductType(r.productType, true);
+            document.getElementById('length').value = r.params.length;
+            document.getElementById('height').value = r.params.height;
+            document.getElementById('width').value = r.params.width;
+            document.getElementById('seamAllowance').value = r.params.seam;
+            document.getElementById('handleLength').value = r.params.handleLength;
+            document.getElementById('handleWidth').value = r.params.handleWidth;
+            if (r.params.fabricWidth) {
+                document.getElementById('fabricWidthInput').value = r.params.fabricWidth;
+            }
+            calculate();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deleteHistory(idx) {
+            let history = loadHistory();
+            history.splice(idx, 1);
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+            renderHistory();
+        }
+
+        function copyPieceList(pieces) {
+            let text = '裁片清单\n';
+            text += '━━━━━━━━━━━━━━━\n';
+            pieces.forEach(p => {
+                text += `${p.name} ×${p.count}  ${p.width.toFixed(1)}×${p.height.toFixed(1)} cm  ${p.description}\n`;
+            });
+            text += '━━━━━━━━━━━━━━━\n';
+            const totalArea = pieces.reduce((s, p) => s + p.width * p.height * p.count, 0);
+            text += `总用料面积: ${totalArea.toFixed(0)} cm²\n`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyListBtn');
+                const original = btn.textContent;
+                btn.textContent = '✅ 已复制!';
+                setTimeout(() => { btn.textContent = original; }, 2000);
+            }).catch(() => {
+                alert('复制失败，请手动选择裁片清单文字后复制');
+            });
+        }
+
+        function selectProductType(type, skipSave) {
             currentProductType = type;
             document.querySelectorAll('.type-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.type === type) {
-                    btn.classList.add('active');
-                }
+                btn.classList.toggle('active', btn.dataset.type === type);
             });
 
-            const defaultSizes = {
-                bag: { length: 20, height: 20, width: 10 },
-                pouch: { length: 15, height: 10, width: 8 },
-                box: { length: 25, height: 15, width: 15 }
-            };
+            const cfg = PRODUCT_CONFIG[type];
+            if (!cfg) return;
+            const s = cfg.defaults;
+            document.getElementById('length').value = s.length;
+            document.getElementById('height').value = s.height;
+            document.getElementById('width').value = s.width;
 
-            const sizes = defaultSizes[type];
-            document.getElementById('length').value = sizes.length;
-            document.getElementById('height').value = sizes.height;
-            document.getElementById('width').value = sizes.width;
+            if (cfg.handleDefaults) {
+                document.getElementById('handleLength').value = cfg.handleDefaults.length;
+                document.getElementById('handleWidth').value = cfg.handleDefaults.width;
+            }
+
+            const editor = document.getElementById('customEditorCard');
+            editor.style.display = cfg.isCustom ? 'block' : 'none';
+            if (cfg.isCustom) renderCustomEditor();
+
+            if (!skipSave) savePreferences();
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            loadPreferences();
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js');
+            }
+
             document.querySelectorAll('.type-btn').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     selectProductType(this.dataset.type);
@@ -502,7 +997,35 @@
                         calculate();
                     }
                 });
+                input.addEventListener('change', savePreferences);
             });
+
+            var historyToggle = document.getElementById('historyToggle');
+            if (historyToggle) {
+                historyToggle.addEventListener('click', function() {
+                    var card = document.getElementById('historyCard');
+                    card.classList.toggle('collapsed');
+                });
+            }
+
+            var copyBtn = document.getElementById('copyListBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    var pieces = window._lastPieces;
+                    if (pieces && pieces.length) {
+                        copyPieceList(pieces);
+                    } else {
+                        alert('请先计算裁剪方案');
+                    }
+                });
+            }
+
+            var addBtn = document.getElementById('addPieceBtn');
+            if (addBtn) {
+                addBtn.addEventListener('click', addCustomPiece);
+            }
+
+            renderHistory();
         });
 
         function calculate() {
@@ -512,6 +1035,7 @@
             const seam = parseFloat(document.getElementById('seamAllowance').value) || 1;
             const handleLength = parseFloat(document.getElementById('handleLength').value) || 30;
             const handleWidth = parseFloat(document.getElementById('handleWidth').value) || 4;
+            const fabricWidth = parseFloat(document.getElementById('fabricWidthInput').value) || 110;
 
             if (length <= 0 || height <= 0 || width <= 0) {
                 alert('请输入有效的尺寸参数！');
@@ -519,100 +1043,89 @@
             }
 
             const pieces = calculatePieces(length, height, width, seam, handleLength, handleWidth);
-            displayResults(pieces, length, height, width, seam);
+            displayResults(pieces, length, height, width, seam, fabricWidth);
+
+            const totalArea = pieces.reduce((s, p) => s + p.width * p.height * p.count, 0);
+            const totalPieces = pieces.reduce((s, p) => s + p.count, 0);
+            saveToHistory(
+                { length, height, width, seam, handleLength, handleWidth, fabricWidth },
+                { totalArea: totalArea.toFixed(0), pieceCount: totalPieces }
+            );
+            renderHistory();
+            savePreferences();
         }
 
         function calculatePieces(l, h, w, seam, handleL, handleW) {
+            const cfg = PRODUCT_CONFIG[currentProductType];
             const pieces = [];
+            const add = (name, count, pw, ph, desc, color, shape, extra) => {
+                pieces.push({ name, count, width: pw, height: ph, description: desc, color: color, shape: shape || 'rect', ...extra });
+            };
 
-            pieces.push({
-                name: '前片',
-                count: 1,
-                width: l + seam * 2,
-                height: h + seam * 2,
-                description: '包包正面',
-                color: '#667eea'
-            });
+            if (cfg.isCustom) return customPieces.length ? JSON.parse(JSON.stringify(customPieces)) : defaultBoxPieces();
 
-            pieces.push({
-                name: '后片',
-                count: 1,
-                width: l + seam * 2,
-                height: h + seam * 2,
-                description: '包包背面',
-                color: '#764ba2'
-            });
-
-            pieces.push({
-                name: '左侧片',
-                count: 1,
-                width: w + seam * 2,
-                height: h + seam * 2,
-                description: '包包左侧',
-                color: '#f093fb'
-            });
-
-            pieces.push({
-                name: '右侧片',
-                count: 1,
-                width: w + seam * 2,
-                height: h + seam * 2,
-                description: '包包右侧',
-                color: '#f5576c'
-            });
-
-            pieces.push({
-                name: '底片',
-                count: 1,
-                width: l + seam * 2,
-                height: w + seam * 2,
-                description: '包包底部',
-                color: '#4facfe'
-            });
-
-            if (currentProductType === 'bag') {
-                pieces.push({
-                    name: '提手',
-                    count: 2,
-                    width: handleL + seam * 2,
-                    height: handleW + seam * 2,
-                    description: '手提部分',
-                    color: '#43e97b'
-                });
+            function defaultBoxPieces() {
+                const p = [];
+                const a = (n,c,pw,ph,d,cl) => add(n,c,pw,ph,d,cl,'rect');
+                a('前片',1,l+seam*2,h+seam*2,'包包正面','#667eea');
+                a('后片',1,l+seam*2,h+seam*2,'包包背面','#764ba2');
+                a('左侧片',1,w+seam*2,h+seam*2,'包包左侧','#f093fb');
+                a('右侧片',1,w+seam*2,h+seam*2,'包包右侧','#f5576c');
+                a('底片',1,l+seam*2,w+seam*2,'包包底部','#4facfe');
+                if (cfg.hasHandles)
+                    a('提手',2,handleL+seam*2,handleW+seam*2,'手提部分','#43e97b');
+                if (cfg.hasLining) {
+                    a('里布前片',1,l+seam*2,h+seam*2,'内衬正面','#fa709a');
+                    a('里布后片',1,l+seam*2,h+seam*2,'内衬背面','#fee140');
+                }
+                return p;
             }
 
-            pieces.push({
-                name: '里布前片',
-                count: 1,
-                width: l + seam * 2,
-                height: h + seam * 2,
-                description: '内衬正面',
-                color: '#fa709a'
-            });
+            if (cfg.sideShape === 'trapezoid') {
+                add('上片',1,l+seam*2,w/2+seam+1,'笔袋上片（含拉链余量）','#667eea','rect');
+                add('下片',1,l+seam*2,w/2+seam+1,'笔袋下片','#764ba2','rect');
+                const tw = w + seam * 2;
+                add('侧片',2,tw,h+seam*2,'笔袋侧片（梯形，上窄下宽）','#f093fb','trapezoid',{bottomWidth:tw+1});
+                if (cfg.hasLining) {
+                    add('里布上片',1,l+seam*2,w/2+seam+1,'内衬上片','#fa709a','rect');
+                    add('里布下片',1,l+seam*2,w/2+seam+1,'内衬下片','#fee140','rect');
+                }
+                return pieces;
+            }
 
-            pieces.push({
-                name: '里布后片',
-                count: 1,
-                width: l + seam * 2,
-                height: h + seam * 2,
-                description: '内衬背面',
-                color: '#fee140'
-            });
+            if (cfg.bottomShape === 'circle' && !cfg.flat) {
+                const d = w + seam * 2;
+                const circ = Math.PI * w;
+                add('袋身',1,circ+seam*2,h+seam*3,'包身（周长×高，含穿绳余量）','#667eea','rect');
+                add('底片',1,d,d,'圆形底部（直径）','#4facfe','circle',{diameter:d});
+                if (cfg.hasLining) {
+                    add('里布袋身',1,circ+seam*2,h+seam*3,'内衬包身','#fa709a','rect');
+                    add('里布底片',1,d,d,'内衬圆形底','#fee140','circle',{diameter:d});
+                }
+                return pieces;
+            }
 
-            return pieces;
+            if (cfg.flat) {
+                add('表布',1,l+seam*2,h+seam*2,'隔热垫正面','#667eea','rounded',{cornerRadius:2+seam});
+                add('里布',1,l+seam*2,h+seam*2,'隔热垫背面','#fa709a','rounded',{cornerRadius:2+seam});
+                add('铺棉',1,l,h,'夹层铺棉（不含缝份）','#43e97b','rect');
+                return pieces;
+            }
+
+            return defaultBoxPieces();
         }
 
-        function displayResults(pieces, l, h, w, seam) {
+        function displayResults(pieces, l, h, w, seam, fabricWidth) {
             document.getElementById('resultSection').classList.add('show');
+
+            window._lastPieces = pieces;
 
             let totalArea = 0;
             let totalPieces = 0;
-            let totalSeamLength = 0;
 
             pieces.forEach(piece => {
                 totalArea += piece.width * piece.height * piece.count;
                 totalPieces += piece.count;
-                totalSeamLength += (piece.width + piece.height) * 2 * piece.count;
             });
 
             document.getElementById('totalArea').textContent = totalArea.toFixed(0);
@@ -621,8 +1134,30 @@
             const seamLength = (l + w) * 2 + h * 4;
             document.getElementById('seamLength').textContent = (seamLength * 2).toFixed(0);
 
-            const maxWidth = Math.max(...pieces.map(p => p.width));
-            document.getElementById('fabricWidth').textContent = maxWidth.toFixed(1);
+            const layout = layoutPieces(pieces, fabricWidth);
+            document.getElementById('fabricWidth').textContent = fabricWidth;
+            document.getElementById('fabricWidth').parentElement.querySelector('.label').textContent = '布幅宽度 (cm)';
+
+            let layoutLenEl = document.getElementById('layoutLength');
+            let layoutUtilEl = document.getElementById('layoutUtilization');
+            if (!layoutLenEl) {
+                const grid = document.querySelector('.summary-grid');
+                const lenItem = document.createElement('div');
+                lenItem.className = 'summary-item';
+                lenItem.innerHTML = '<div class="value" id="layoutLength">0</div><div class="label">所需布料长度 (cm)</div>';
+                grid.appendChild(lenItem);
+                const utilItem = document.createElement('div');
+                utilItem.className = 'summary-item';
+                utilItem.innerHTML = '<div class="value" id="layoutUtilization">0%</div><div class="label">布料利用率</div>';
+                grid.appendChild(utilItem);
+                layoutLenEl = document.getElementById('layoutLength');
+                layoutUtilEl = document.getElementById('layoutUtilization');
+            }
+            document.getElementById('layoutLength').textContent = layout.requiredLength.toFixed(1);
+            document.getElementById('layoutUtilization').textContent = Math.round(layout.utilization) + '%';
+
+            document.getElementById('printProductType').textContent = PRODUCT_CONFIG[currentProductType].name;
+            document.getElementById('printDate').textContent = new Date().toLocaleDateString('zh-CN');
 
             const pieceList = document.getElementById('pieceList');
             pieceList.innerHTML = pieces.map(piece => `
@@ -647,6 +1182,56 @@
             document.getElementById('tipsList').innerHTML = tips.map(tip => `<li>${tip}</li>`).join('');
 
             document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function layoutPieces(pieces, fabricWidth) {
+            const expanded = [];
+            pieces.forEach(p => {
+                for (let i = 0; i < p.count; i++) {
+                    expanded.push({ ...p, _id: p.name + (p.count > 1 ? ' ' + (i+1) : '') });
+                }
+            });
+
+            expanded.sort((a, b) => b.height - a.height);
+
+            const shelves = [];
+            for (const piece of expanded) {
+                let placed = false;
+                for (const shelf of shelves) {
+                    if (shelf.remainingWidth >= piece.width) {
+                        piece._x = shelf.x;
+                        piece._y = shelf.topY;
+                        shelf.x += piece.width;
+                        shelf.remainingWidth -= piece.width;
+                        placed = true;
+                        break;
+                    }
+                }
+                if (!placed) {
+                    const shelfTopY = shelves.length > 0
+                        ? shelves[shelves.length - 1].topY + shelves[shelves.length - 1].height
+                        : 0;
+                    const shelf = {
+                        topY: shelfTopY,
+                        x: 0,
+                        remainingWidth: fabricWidth - piece.width,
+                        height: piece.height
+                    };
+                    piece._x = 0;
+                    piece._y = shelfTopY;
+                    shelves.push(shelf);
+                }
+            }
+
+            const requiredLength = shelves.length > 0
+                ? shelves[shelves.length - 1].topY + shelves[shelves.length - 1].height
+                : 0;
+
+            const totalArea = expanded.reduce((s, p) => s + p.width * p.height, 0);
+            const fabricArea = fabricWidth * requiredLength;
+            const utilization = fabricArea > 0 ? (totalArea / fabricArea) * 100 : 0;
+
+            return { shelves, pieces: expanded, requiredLength, utilization, totalArea, fabricWidth };
         }
 
         function drawDiagrams(pieces) {
@@ -688,13 +1273,30 @@
         function drawPieceDiagram(ctx, piece, canvasWidth, canvasHeight) {
             ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-            const padding = 15;
+            const padding = 18;
             const maxWidth = canvasWidth - padding * 2;
             const maxHeight = canvasHeight - padding * 2;
 
-            const scale = Math.min(maxWidth / piece.width, maxHeight / piece.height);
-            const drawWidth = piece.width * scale;
-            const drawHeight = piece.height * scale;
+            const pw = piece.width;
+            const ph = piece.height;
+            const shape = piece.shape || 'rect';
+            let scale, drawWidth, drawHeight;
+
+            if (shape === 'circle') {
+                const d = piece.diameter || pw;
+                scale = Math.min(maxWidth / d, maxHeight / d);
+                drawWidth = drawHeight = d * scale;
+            } else if (shape === 'trapezoid') {
+                const bw = piece.bottomWidth || pw;
+                const maxW = Math.max(pw, bw);
+                scale = Math.min(maxWidth / maxW, maxHeight / ph);
+                drawWidth = maxW * scale;
+                drawHeight = ph * scale;
+            } else {
+                scale = Math.min(maxWidth / pw, maxHeight / ph);
+                drawWidth = pw * scale;
+                drawHeight = ph * scale;
+            }
 
             const x = (canvasWidth - drawWidth) / 2;
             const y = (canvasHeight - drawHeight) / 2;
@@ -702,21 +1304,120 @@
             ctx.fillStyle = piece.color + '30';
             ctx.strokeStyle = piece.color;
             ctx.lineWidth = 2;
+            ctx.beginPath();
 
-            ctx.fillRect(x, y, drawWidth, drawHeight);
-            ctx.strokeRect(x, y, drawWidth, drawHeight);
+            if (shape === 'circle') {
+                const r = drawWidth / 2;
+                ctx.arc(canvasWidth / 2, canvasHeight / 2, r, 0, Math.PI * 2);
+            } else if (shape === 'trapezoid') {
+                const bw = piece.bottomWidth || pw;
+                const topW = pw * scale;
+                const botW = bw * scale;
+                const leftX = x + (drawWidth - topW) / 2;
+                const rightX = leftX + topW;
+                ctx.moveTo(leftX, y);
+                ctx.lineTo(rightX, y);
+                ctx.lineTo(x + drawWidth, y + drawHeight);
+                ctx.lineTo(x, y + drawHeight);
+            } else if (shape === 'rounded') {
+                const r = (piece.cornerRadius || 2) * scale;
+                ctx.moveTo(x + r, y);
+                ctx.lineTo(x + drawWidth - r, y);
+                ctx.arcTo(x + drawWidth, y, x + drawWidth, y + r, r);
+                ctx.lineTo(x + drawWidth, y + drawHeight - r);
+                ctx.arcTo(x + drawWidth, y + drawHeight, x + drawWidth - r, y + drawHeight, r);
+                ctx.lineTo(x + r, y + drawHeight);
+                ctx.arcTo(x, y + drawHeight, x, y + drawHeight - r, r);
+                ctx.lineTo(x, y + r);
+                ctx.arcTo(x, y, x + r, y, r);
+            } else {
+                ctx.rect(x, y, drawWidth, drawHeight);
+            }
 
-            ctx.fillStyle = '#333';
-            ctx.font = '10px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(`${piece.width.toFixed(0)}`, canvasWidth / 2, y + drawHeight + 12);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
 
-            ctx.save();
-            ctx.translate(x - 5, canvasHeight / 2);
-            ctx.rotate(-Math.PI / 2);
-            ctx.fillText(`${piece.height.toFixed(0)}`, 0, 0);
-            ctx.restore();
+            if (shape !== 'circle') {
+                ctx.fillStyle = '#333';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(`${pw.toFixed(0)}`, canvasWidth/2, y + drawHeight + 13);
+                ctx.save();
+                ctx.translate(x - 5, canvasHeight/2);
+                ctx.rotate(-Math.PI/2);
+                ctx.fillText(`${ph.toFixed(0)}`, 0, 0);
+                ctx.restore();
+
+                const cx = canvasWidth/2, cy = canvasHeight/2;
+                const arrowLen = Math.min(12, drawHeight * 0.18);
+                ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([3, 3]);
+                ctx.beginPath();
+                ctx.moveTo(cx, cy + arrowLen);
+                ctx.lineTo(cx, cy - arrowLen);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.beginPath();
+                ctx.moveTo(cx - 3, cy - arrowLen + 4);
+                ctx.lineTo(cx, cy - arrowLen);
+                ctx.lineTo(cx + 3, cy - arrowLen + 4);
+                ctx.stroke();
+            } else {
+                ctx.fillStyle = '#333';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(`Ø${pw.toFixed(0)}`, canvasWidth/2, canvasHeight/2 + 4);
+            }
         }
+
+        function renderCustomEditor() {
+            const list = document.getElementById('customPieceList');
+            const pieces = customPieces.length ? customPieces : defaultCustomPieces();
+            customPieces = pieces;
+            const shapes = [{v:'rect',n:'矩形'},{v:'trapezoid',n:'梯形'},{v:'circle',n:'圆形'},{v:'rounded',n:'圆角矩形'}];
+
+            list.innerHTML = pieces.map((p, i) => `
+                <div class="custom-piece-item">
+                    <input type="text" value="${esc(p.name)}" placeholder="名称" onchange="updateCustomPiece(${i},'name',this.value)">
+                    <span style="font-size:0.75rem;color:#999;text-align:center;">×${p.count}</span>
+                    <input type="number" value="${p.width.toFixed(1)}" step="0.5" placeholder="宽cm" onchange="updateCustomPiece(${i},'width',parseFloat(this.value))">
+                    <input type="number" value="${p.height.toFixed(1)}" step="0.5" placeholder="高cm" onchange="updateCustomPiece(${i},'height',parseFloat(this.value))">
+                    <select onchange="updateCustomPiece(${i},'shape',this.value)">
+                        ${shapes.map(s => `<option value="${s.v}" ${p.shape===s.v?'selected':''}>${s.n}</option>`).join('')}
+                    </select>
+                    <button class="btn-remove-piece" onclick="removeCustomPiece(${i})" title="删除">×</button>
+                </div>
+            `).join('');
+        }
+
+        function defaultCustomPieces() {
+            return [
+                {name:'前片',count:1,width:22,height:22,shape:'rect',color:'#667eea',description:''},
+                {name:'后片',count:1,width:22,height:22,shape:'rect',color:'#764ba2',description:''},
+            ];
+        }
+
+        function addCustomPiece() {
+            customPieces.push({name:'新裁片',count:1,width:10,height:10,shape:'rect',color:'#aabbcc',description:''});
+            renderCustomEditor();
+        }
+
+        function removeCustomPiece(idx) {
+            customPieces.splice(idx, 1);
+            if (customPieces.length === 0) customPieces = defaultCustomPieces();
+            renderCustomEditor();
+        }
+
+        function updateCustomPiece(idx, field, value) {
+            if (idx < customPieces.length) {
+                customPieces[idx][field] = value;
+                if (field === 'name') customPieces[idx].description = customPieces[idx].description || '';
+            }
+        }
+
+        function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
         function generateTips(l, h, w, seam) {
             const tips = [];
@@ -733,7 +1434,7 @@
 
             tips.push(`里布尺寸可与表布相同，或略小0.5cm使成品更挺括。`);
 
-            if (currentProductType === 'bag') {
+            if (currentProductType === 'bag' || currentProductType === 'tote') {
                 tips.push(`提手建议使用双层布料或加衬，增加承重能力。`);
             }
 
