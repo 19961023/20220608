@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="缝纫助手">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192.png">
     <link rel="manifest" href="manifest.json">
     <title>缝纫作业辅助工具</title>
     <style>
@@ -712,7 +716,7 @@
         <header>
             <h1>🧵 缝纫作业辅助工具</h1>
             <p>输入尺寸，自动计算裁剪方案</p>
-            <button type="button" class="install-btn" id="installBtn" style="display:none;">📲 添加到主屏幕</button>
+            <button type="button" class="install-btn" id="installBtn">📲 添加到主屏幕</button>
         </header>
 
         <div class="card no-print">
@@ -1076,11 +1080,15 @@
 
             var deferredPrompt = null;
             var installBtn = document.getElementById('installBtn');
+            var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
 
             window.addEventListener('beforeinstallprompt', function(e) {
                 e.preventDefault();
                 deferredPrompt = e;
-                installBtn.style.display = 'inline-block';
+            });
+
+            window.addEventListener('appinstalled', function() {
+                if (installBtn) installBtn.style.display = 'none';
             });
 
             if (installBtn) {
@@ -1088,13 +1096,15 @@
                     if (deferredPrompt) {
                         deferredPrompt.prompt();
                         deferredPrompt.userChoice.then(function(result) {
-                            installBtn.style.display = result.outcome === 'accepted' ? 'none' : 'inline-block';
                             deferredPrompt = null;
+                            if (result.outcome === 'accepted') {
+                                installBtn.style.display = 'none';
+                            }
                         });
-                    } else if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                    } else if (isIOS) {
                         document.getElementById('iosGuide').classList.add('show');
                     } else {
-                        alert('请通过浏览器菜单 → "添加到主屏幕" 来安装');
+                        alert('请通过浏览器右上角菜单 → "添加到主屏幕" 进行安装\n\n（Android Chrome：⋮ → 添加到主屏幕\n iOS Safari：分享按钮 → 添加到主屏幕）');
                     }
                 });
             }
