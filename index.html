@@ -1757,6 +1757,11 @@
                 if (userMap[uid] && userMap.hasOwnProperty(uid)) userOnly.push(userMap[uid]);
             }
 
+            // Remove pieces the user explicitly deleted
+            if (window._deletedUids) {
+                fresh = fresh.filter(function(p) { return !window._deletedUids[p._uid]; });
+            }
+
             var result = fresh.concat(userOnly);
             customPieces = result.slice();
 
@@ -3178,6 +3183,12 @@
         }
 
         function removeEditorPiece(idx) {
+            var removed = customPieces[idx];
+            // Track deleted algo pieces so calculate() filters them out
+            if (removed && removed._uid) {
+                if (!window._deletedUids) window._deletedUids = {};
+                window._deletedUids[removed._uid] = true;
+            }
             customPieces.splice(idx, 1);
             if (customPieces.length === 0) {
                 customPieces.push({_uid:nextPieceUid(), name:'裁片1', count:1, width:10, height:10, shape:'rect', color:'#aabbcc', description:'', fabricId:(fabrics[0]?fabrics[0].id:'fabric_a')});
@@ -3196,6 +3207,7 @@
         }
 
         function resetPiecesToDefaults() {
+            window._deletedUids = {}; // clear deletion tracking
             var l = parseFloat(document.getElementById('length').value) || 0;
             var h = parseFloat(document.getElementById('height').value) || 0;
             var w = parseFloat(document.getElementById('width').value) || 0;
