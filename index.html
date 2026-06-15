@@ -1745,6 +1745,11 @@
                     p.fabricId = u.fabricId || p.fabricId;
                     if (u.shape && u.shape !== 'rect') p.shape = u.shape;
                     if (u.name) p.name = u.name;
+                    // Apply user-modified dimensions
+                    if (u.width && u.width !== p.width) p.width = u.width;
+                    if (u.height && u.height !== p.height) p.height = u.height;
+                    if (u.count && u.count !== p.count) p.count = u.count;
+                    if (u.description) p.description = u.description;
                     userMap[p._uid] = null;
                 }
             });
