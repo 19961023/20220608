@@ -1,4 +1,4 @@
-var CACHE_NAME = 'sewing-v3';
+var CACHE_NAME = 'sewing-v4';
 var CACHE_URLS = [
     'index.html',
     'manifest.json',

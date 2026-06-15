@@ -438,6 +438,20 @@
             .product-type-selector {
                 grid-template-columns: repeat(3, 1fr);
             }
+
+            .fabric-row {
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+
+            .fabric-dim {
+                padding: 3px 6px;
+            }
+
+            .fabric-dim input[type="number"] {
+                width: 44px;
+                font-size: 0.78rem;
+            }
         }
 
         .history-header {
@@ -574,7 +588,7 @@
 
         .custom-piece-item {
             display: grid;
-            grid-template-columns: 2fr 40px 1fr 1fr 80px 30px;
+            grid-template-columns: 2fr 32px 1fr 1fr 80px 70px 28px;
             gap: 6px;
             align-items: center;
             padding: 8px;
@@ -632,6 +646,284 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 4px;
             }
+        }
+
+        .merge-option {
+            margin-top: 12px;
+            padding: 10px 14px;
+            background: #f5f0ff;
+            border-radius: 10px;
+        }
+
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .toggle-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        .fabric-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .fabric-stat-group {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .fabric-stat-header {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .fabric-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: #e0e0e0;
+        }
+
+        .fabric-stat-item {
+            background: white;
+            padding: 10px 8px;
+            text-align: center;
+        }
+
+        .fabric-stat-item .value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .fabric-stat-item .label {
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .fabric-stat-empty {
+            text-align: center;
+            color: #999;
+            font-size: 0.8rem;
+            padding: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .fabric-stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .fabric-layouts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .fabric-layout-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .fabric-layout-item .fl-header {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fabric-layout-item .fl-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .fabric-layout-item canvas {
+            max-width: 100%;
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .scrap-suggestion {
+            background: #fff3cd;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            color: #8a6d14;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .fabric-manager {
+            margin-top: 10px;
+        }
+
+        .fabric-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 0;
+        }
+
+        .fabric-row input[type="color"] {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .fabric-row input[type="text"] {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .fabric-row input[type="text"]:focus { outline: none; border-color: #667eea; }
+
+        .fabric-dim {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            background: #f2f3f5;
+            border-radius: 6px;
+            padding: 4px 8px;
+            flex-shrink: 0;
+        }
+
+        .fabric-dim input[type="number"] {
+            width: 52px;
+            padding: 5px 4px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            text-align: center;
+            background: white;
+            -moz-appearance: textfield;
+        }
+
+        .fabric-dim input[type="number"]::-webkit-inner-spin-button,
+        .fabric-dim input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .fabric-dim input[type="number"]:focus { outline: none; border-color: #667eea; }
+
+        .fabric-dim .dim-unit {
+            font-size: 0.7rem;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        .fabric-row .btn-del-fabric {
+            background: none;
+            border: none;
+            color: #f5576c;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 2px 6px;
+            flex-shrink: 0;
+        }
+
+        .fabric-row .btn-del-fabric:hover {
+            color: #d6334a;
+        }
+
+        .btn-add-fabric {
+            width: 100%;
+            padding: 8px;
+            border: 2px dashed #ccc;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: #667eea;
+            transition: all 0.2s;
+            margin-top: 6px;
+        }
+
+        .btn-add-fabric:hover {
+            border-color: #667eea;
+            background: #f5f0ff;
+        }
+
+        .fabric-select {
+            padding: 4px 6px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            background: white;
+            cursor: pointer;
+            width: 80px;
+        }
+
+        .fabric-select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+
+        .preview-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .preview-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .preview-legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.15);
+        }
+
+        /* Non-box preview fallback */
+        .preview-canvas-wrap {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .preview-canvas-wrap canvas {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+            background: #fdfdfd;
         }
 
         @media print {
@@ -773,19 +1065,31 @@
                     <input type="number" id="handleWidth" value="4" min="2" max="8" step="0.5">
                     <span class="unit">厘米</span>
                 </div>
-                <div class="input-item">
-                    <label>布幅宽度</label>
-                    <input type="number" id="fabricWidthInput" value="110" min="30" step="5">
-                    <span class="unit">厘米（用于排版计算）</span>
                 </div>
             </div>
+            <div class="merge-option">
+                <label class="toggle-label">
+                    <input type="checkbox" id="mergeSides" checked onchange="savePreferences()">
+                    <span class="toggle-text">合并侧片（前后片连体裁切，更符合手作习惯）</span>
+                </label>
+            </div>
             <button type="button" class="btn" id="calculateBtn">📐 计算裁剪方案</button>
+        </div>
+
+        <div class="card no-print" id="fabricManagerCard">
+            <div class="card-title">面料管理</div>
+            <div class="fabric-manager" id="fabricManager"></div>
+            <button type="button" class="btn-add-fabric" id="addFabricBtn">+ 添加面料</button>
         </div>
 
         <div class="card no-print" id="customEditorCard" style="display:none;">
             <div class="card-title">裁片编辑器</div>
             <div class="custom-piece-list" id="customPieceList"></div>
-            <button type="button" class="btn-add-piece" id="addPieceBtn">+ 添加裁片</button>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+                <button type="button" class="btn-add-piece" id="addPieceBtn" style="flex:1;">+ 添加裁片</button>
+                <button type="button" class="btn-add-piece" id="resetPiecesBtn" style="flex:1;">↺ 重置为默认</button>
+            </div>
+            <button type="button" class="btn" id="calculateBtn2" style="margin-top:8px;">📐 计算裁剪方案</button>
         </div>
 
         <div class="card history-card collapsed" id="historyCard">
@@ -801,23 +1105,43 @@
         <div class="result-section" id="resultSection">
             <div class="card">
                 <div class="card-title">材料用量统计</div>
-                <div class="summary-grid">
-                    <div class="summary-item">
-                        <div class="value" id="totalArea">0</div>
-                        <div class="label">总布料面积 (cm²)</div>
+                <div class="fabric-stats" id="fabricStatsContainer">
+                    <div class="summary-grid" id="summaryGrid">
+                        <div class="summary-item">
+                            <div class="value" id="totalArea">0</div>
+                            <div class="label">总布料面积 (cm²)</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="value" id="pieceCount">0</div>
+                            <div class="label">裁片总数</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="value" id="seamLength">0</div>
+                            <div class="label">缝线长度 (cm)</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="value" id="fabricWidthStat">0</div>
+                            <div class="label">布幅宽度 (cm)</div>
+                        </div>
                     </div>
-                    <div class="summary-item">
-                        <div class="value" id="pieceCount">0</div>
-                        <div class="label">裁片总数</div>
+                </div>
+            </div>
+
+            <!-- 成品结构图暂时隐藏
+            <div class="card" id="previewCard">
+                <div class="card-title">成品结构图</div>
+                <div class="scene3d" id="scene3d">
+                    <div class="structure-preview-wrap">
+                        <canvas id="structureCanvas"></canvas>
                     </div>
-                    <div class="summary-item">
-                        <div class="value" id="seamLength">0</div>
-                        <div class="label">缝线长度 (cm)</div>
-                    </div>
-                    <div class="summary-item">
-                        <div class="value" id="fabricWidth">0</div>
-                        <div class="label">建议布料宽度 (cm)</div>
-                    </div>
+                </div>
+                <div class="preview-legend" id="previewLegend"></div>
+            </div>
+            -->
+            <div class="card" id="cuttingLayoutCard">
+                <div class="card-title">裁剪展开图</div>
+                <div class="preview-canvas-wrap" id="layoutWrap">
+                    <canvas id="layoutCanvas"></canvas>
                 </div>
             </div>
 
@@ -829,6 +1153,11 @@
             <div class="card">
                 <div class="card-title">裁片示意图</div>
                 <div class="diagram-container" id="diagramContainer"></div>
+            </div>
+
+            <div class="card" id="fabricLayoutCard">
+                <div class="card-title">排版参考图</div>
+                <div class="fabric-layouts" id="fabricLayouts"></div>
             </div>
 
             <div class="card">
@@ -868,6 +1197,97 @@
         const PREFS_KEY = 'sewing_preferences';
         const MAX_HISTORY = 20;
 
+        const FABRIC_DEFAULTS = {
+            standard: [
+                { id: 'fabric_a', name: '面料A', color: '#667eea', width: 110, maxLength: null },
+                { id: 'lining',   name: '里布',   color: '#c0c0c0', width: 110, maxLength: null }
+            ],
+            withAccent: [
+                { id: 'fabric_a', name: '面料A', color: '#667eea', width: 110, maxLength: null },
+                { id: 'fabric_b', name: '面料B', color: '#43e97b', width: 110, maxLength: null },
+                { id: 'lining',   name: '里布',   color: '#c0c0c0', width: 110, maxLength: null }
+            ],
+            potholder: [
+                { id: 'fabric_a', name: '表布', color: '#667eea', width: 110, maxLength: null },
+                { id: 'fabric_b', name: '里布', color: '#fa709a', width: 110, maxLength: null },
+                { id: 'batting',  name: '铺棉', color: '#eee',    width: 110, maxLength: null }
+            ],
+            basic: [
+                { id: 'fabric_a', name: '面料A', color: '#667eea', width: 110, maxLength: null }
+            ]
+        };
+
+        // FABRIC_DEFAULTS per product type
+        const PRODUCT_FABRIC_MAP = {
+            bag:      'withAccent',
+            tote:     'withAccent',
+            pouch:    'standard',
+            pencil:   'standard',
+            drawstring: 'standard',
+            cupsleeve: 'basic',
+            potholder: 'potholder',
+            box:      'standard',
+            custom:   'withAccent'
+        };
+
+        let fabrics = [];
+
+        function getDefaultFabrics() {
+            const key = PRODUCT_FABRIC_MAP[currentProductType] || 'standard';
+            return JSON.parse(JSON.stringify(FABRIC_DEFAULTS[key]));
+        }
+
+        function ensureFabrics() {
+            if (!fabrics || fabrics.length === 0) {
+                fabrics = getDefaultFabrics();
+            }
+        }
+
+        function groupByFabric(pieces) {
+            ensureFabrics();
+            const groups = {};
+            fabrics.forEach(f => { groups[f.id] = { fabric: f, pieces: [] }; });
+            pieces.forEach(p => {
+                const fid = p.fabricId || 'fabric_a';
+                if (!groups[fid]) {
+                    groups[fid] = { fabric: { id: fid, name: fid, color: '#999' }, pieces: [] };
+                }
+                groups[fid].pieces.push(p);
+            });
+            return groups;
+        }
+
+        function getFabricStats(fabricId, pieces) {
+            const fp = pieces.filter(p => p.fabricId === fabricId);
+            if (fp.length === 0) return { totalArea: 0, pieceCount: 0, maxWidth: 0 };
+            let totalArea = 0, pieceCount = 0, maxWidth = 0;
+            fp.forEach(p => {
+                const area = p.width * p.height * p.count;
+                totalArea += area;
+                pieceCount += p.count;
+                if (p.width > maxWidth) maxWidth = p.width;
+            });
+            return { totalArea, pieceCount, maxWidth };
+        }
+
+        function getFabricById(id) {
+            ensureFabrics();
+            return fabrics.find(function(f) { return f.id === id; }) || { id: id, name: id, color: '#999' };
+        }
+
+        function pieceArea(p) {
+            var area = p.width * p.height;
+            if (p.shape === 'circle') {
+                var d = p.diameter || p.width;
+                area = Math.PI * (d / 2) * (d / 2);
+            } else if (p.shape === 'notched') {
+                var nl = p.notchLeft  || { depth: 0, height: 0 };
+                var nr = p.notchRight || { depth: 0, height: 0 };
+                area -= nl.depth * nl.height + nr.depth * nr.height;
+            }
+            return Math.max(area, 1);
+        }
+
         const PRODUCT_CONFIG = {
             bag:      { name:'手提包', icon:'📦', defaults:{length:20,height:20,width:10}, hasHandles:true,  hasLining:true },
             tote:     { name:'托特包', icon:'🛍️', defaults:{length:30,height:28,width:14}, hasHandles:true,  hasLining:true, handleDefaults:{length:35,width:5} },
@@ -881,6 +1301,24 @@
         };
 
         let customPieces = [];
+        let _fabricIdCounter = 10;
+        let _pieceUidCounter = 1000;
+
+        function nextPieceUid() {
+            return _pieceUidCounter++;
+        }
+
+        function assignPieceUids(pieces) {
+            // Stable UIDs for algo pieces: derive from product type + piece index
+            pieces.forEach(function(p, i) {
+                p._uid = currentProductType + '_' + i;
+            });
+            // User-added pieces keep their existing _uid if they have one
+            pieces.forEach(function(p) {
+                if (!p._uid) p._uid = nextPieceUid();
+            });
+            return pieces;
+        }
 
         function getTypeLabel(type) {
             const cfg = PRODUCT_CONFIG[type];
@@ -896,7 +1334,9 @@
                 seam: document.getElementById('seamAllowance').value,
                 handleLength: document.getElementById('handleLength').value,
                 handleWidth: document.getElementById('handleWidth').value,
-                fabricWidth: document.getElementById('fabricWidthInput').value
+                mergeSides: document.getElementById('mergeSides').checked,
+                fabrics: fabrics,
+                customPieces: customPieces
             };
             localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
         }
@@ -906,16 +1346,83 @@
                 const raw = localStorage.getItem(PREFS_KEY);
                 if (!raw) return false;
                 const prefs = JSON.parse(raw);
+
+                // Restore type first
                 if (prefs.productType) {
-                    selectProductType(prefs.productType, true);
+                    currentProductType = prefs.productType;
+                    document.querySelectorAll('.type-btn').forEach(function(btn) {
+                        btn.classList.toggle('active', btn.dataset.type === currentProductType);
+                    });
                 }
+
+                // Restore input values
                 if (prefs.length) document.getElementById('length').value = prefs.length;
                 if (prefs.height) document.getElementById('height').value = prefs.height;
                 if (prefs.width) document.getElementById('width').value = prefs.width;
                 if (prefs.seam) document.getElementById('seamAllowance').value = prefs.seam;
                 if (prefs.handleLength) document.getElementById('handleLength').value = prefs.handleLength;
                 if (prefs.handleWidth) document.getElementById('handleWidth').value = prefs.handleWidth;
-                if (prefs.fabricWidth) document.getElementById('fabricWidthInput').value = prefs.fabricWidth;
+                var mergeCheckbox = document.getElementById('mergeSides');
+                if (mergeCheckbox && prefs.hasOwnProperty('mergeSides')) mergeCheckbox.checked = prefs.mergeSides;
+
+                // Restore fabrics
+                if (prefs.fabrics && prefs.fabrics.length) {
+                    fabrics = prefs.fabrics;
+                } else {
+                    fabrics = getDefaultFabrics();
+                }
+
+                
+                                // Restore customPieces via merge: keep user-added, refresh algo dimensions
+                if (prefs.customPieces && prefs.customPieces.length) {
+                    var l = parseFloat(document.getElementById('length').value) || 0;
+                    var h = parseFloat(document.getElementById('height').value) || 0;
+                    var w = parseFloat(document.getElementById('width').value) || 0;
+                    var seam = parseFloat(document.getElementById('seamAllowance').value) || 1;
+                    var hl = parseFloat(document.getElementById('handleLength').value) || 30;
+                    var hw = parseFloat(document.getElementById('handleWidth').value) || 4;
+                    var fresh = calculatePieces(l, h, w, seam, hl, hw);
+                    assignPieceUids(fresh);
+
+                    // Build lookup of old overrides by _uid (skip pieces without _uid — they'll be replaced)
+                    var oldByUid = {};
+                    prefs.customPieces.forEach(function(p) { if (p._uid) oldByUid[p._uid] = p; });
+
+                    // Apply old fabricId/shape/name onto fresh algo pieces
+                    fresh.forEach(function(p) {
+                        var old = oldByUid[p._uid];
+                        if (old) {
+                            if (old.fabricId) p.fabricId = old.fabricId;
+                            if (old.shape && old.shape !== 'rect') p.shape = old.shape;
+                            if (old.name) p.name = old.name;
+                        }
+                    });
+
+                    // Keep old pieces that are not algo-generated for this type (user-added)
+                    var freshUids = {};
+                    fresh.forEach(function(p) { freshUids[p._uid] = true; });
+                    prefs.customPieces.forEach(function(p) {
+                        if (p._uid && !freshUids[p._uid]) fresh.push(p);
+                    });
+
+                    customPieces = fresh;
+                } else {
+                    // Generate fresh pieces for current type
+                    var l = parseFloat(document.getElementById('length').value) || 0;
+                    var h = parseFloat(document.getElementById('height').value) || 0;
+                    var w = parseFloat(document.getElementById('width').value) || 0;
+                    var seam = parseFloat(document.getElementById('seamAllowance').value) || 1;
+                    var hl = parseFloat(document.getElementById('handleLength').value) || 30;
+                    var hw = parseFloat(document.getElementById('handleWidth').value) || 4;
+                    customPieces = calculatePieces(l, h, w, seam, hl, hw);
+                    assignPieceUids(customPieces);
+                }
+
+                var editor = document.getElementById('customEditorCard');
+                editor.style.display = 'block';
+                renderCustomEditor();
+                renderFabricManager();
+
                 return true;
             } catch (e) {
                 return false;
@@ -928,6 +1435,7 @@
                 productType: currentProductType,
                 params: params,
                 summary: summary,
+                fabrics: JSON.parse(JSON.stringify(fabrics)),
                 savedAt: new Date().toISOString()
             };
             let history;
@@ -1006,14 +1514,20 @@
             const r = history[idx];
             if (!r) return;
             selectProductType(r.productType, true);
+            if (r.summary && r.summary.fabrics && r.summary.fabrics.length) fabrics = r.summary.fabrics;
+            else if (r.fabrics && r.fabrics.length) fabrics = r.fabrics;
+            else fabrics = getDefaultFabrics();
             document.getElementById('length').value = r.params.length;
             document.getElementById('height').value = r.params.height;
             document.getElementById('width').value = r.params.width;
             document.getElementById('seamAllowance').value = r.params.seam;
             document.getElementById('handleLength').value = r.params.handleLength;
             document.getElementById('handleWidth').value = r.params.handleWidth;
-            if (r.params.fabricWidth) {
-                document.getElementById('fabricWidthInput').value = r.params.fabricWidth;
+            var mergeCB = document.getElementById('mergeSides');
+            if (mergeCB && r.params.hasOwnProperty('mergeSides')) mergeCB.checked = r.params.mergeSides;
+            // Restore custom pieces from history
+            if (r.summary && r.summary.customPieces && r.summary.customPieces.length) {
+                customPieces = r.summary.customPieces;
             }
             calculate();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1027,13 +1541,18 @@
         }
 
         function copyPieceList(pieces) {
+            const groups = groupByFabric(pieces);
             let text = '裁片清单\n';
             text += '━━━━━━━━━━━━━━━\n';
-            pieces.forEach(p => {
-                text += `${p.name} ×${p.count}  ${p.width.toFixed(1)}×${p.height.toFixed(1)} cm  ${p.description}\n`;
+            Object.values(groups).forEach(g => {
+                if (g.pieces.length === 0) return;
+                text += `\n【${g.fabric.name}】\n`;
+                g.pieces.forEach(p => {
+                    text += `  ${p.name} ×${p.count}  ${p.width.toFixed(1)}×${p.height.toFixed(1)} cm  ${p.description}\n`;
+                });
             });
-            text += '━━━━━━━━━━━━━━━\n';
-            const totalArea = pieces.reduce((s, p) => s + p.width * p.height * p.count, 0);
+            text += '\n━━━━━━━━━━━━━━━\n';
+            var totalArea = pieces.reduce(function(s, p) { return s + pieceArea(p) * p.count; }, 0);
             text += `总用料面积: ${totalArea.toFixed(0)} cm²\n`;
 
             navigator.clipboard.writeText(text).then(() => {
@@ -1048,6 +1567,7 @@
 
         function selectProductType(type, skipSave) {
             currentProductType = type;
+            fabrics = getDefaultFabrics();
             document.querySelectorAll('.type-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.type === type);
             });
@@ -1064,15 +1584,32 @@
                 document.getElementById('handleWidth').value = cfg.handleDefaults.width;
             }
 
-            const editor = document.getElementById('customEditorCard');
-            editor.style.display = cfg.isCustom ? 'block' : 'none';
-            if (cfg.isCustom) renderCustomEditor();
+            // Seed customPieces by running calculate with defaults
+            var l = parseFloat(document.getElementById('length').value) || 0;
+            var h = parseFloat(document.getElementById('height').value) || 0;
+            var w = parseFloat(document.getElementById('width').value) || 0;
+            var seam = parseFloat(document.getElementById('seamAllowance').value) || 1;
+            var hl = parseFloat(document.getElementById('handleLength').value) || 30;
+            var hw = parseFloat(document.getElementById('handleWidth').value) || 4;
+            customPieces = calculatePieces(l, h, w, seam, hl, hw);
+            assignPieceUids(customPieces);
+
+            var editor = document.getElementById('customEditorCard');
+            editor.style.display = 'block';
+            renderCustomEditor();
+
+            renderFabricManager();
 
             if (!skipSave) savePreferences();
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            loadPreferences();
+            var hasPrefs = loadPreferences();
+            ensureFabrics();
+            if (!hasPrefs) {
+                // First-time user: initialize with current product type
+                selectProductType(currentProductType, true);
+            }
 
             if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
                 navigator.serviceWorker.register('sw.js').catch(function(){});
@@ -1128,6 +1665,10 @@
             if (calculateBtn) {
                 calculateBtn.addEventListener('click', calculate);
             }
+            var calculateBtn2 = document.getElementById('calculateBtn2');
+            if (calculateBtn2) {
+                calculateBtn2.addEventListener('click', calculate);
+            }
 
             document.querySelectorAll('input[type="number"]').forEach(function(input) {
                 input.addEventListener('keypress', function(e) {
@@ -1163,70 +1704,134 @@
                 addBtn.addEventListener('click', addCustomPiece);
             }
 
+            var resetBtn = document.getElementById('resetPiecesBtn');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', resetPiecesToDefaults);
+            }
+
+            var addFabricBtn = document.getElementById('addFabricBtn');
+            if (addFabricBtn) {
+                addFabricBtn.addEventListener('click', addFabric);
+            }
+
+            renderFabricManager();
             renderHistory();
         });
 
         function calculate() {
-            const length = parseFloat(document.getElementById('length').value) || 0;
-            const height = parseFloat(document.getElementById('height').value) || 0;
-            const width = parseFloat(document.getElementById('width').value) || 0;
-            const seam = parseFloat(document.getElementById('seamAllowance').value) || 1;
-            const handleLength = parseFloat(document.getElementById('handleLength').value) || 30;
-            const handleWidth = parseFloat(document.getElementById('handleWidth').value) || 4;
-            const fabricWidth = parseFloat(document.getElementById('fabricWidthInput').value) || 110;
+            var length = parseFloat(document.getElementById('length').value) || 0;
+            var height = parseFloat(document.getElementById('height').value) || 0;
+            var width = parseFloat(document.getElementById('width').value) || 0;
+            var seam = parseFloat(document.getElementById('seamAllowance').value) || 1;
+            var handleLength = parseFloat(document.getElementById('handleLength').value) || 30;
+            var handleWidth = parseFloat(document.getElementById('handleWidth').value) || 4;
 
-            if (length <= 0 || height <= 0 || width <= 0) {
-                alert('请输入有效的尺寸参数！');
-                return;
+            if (length <= 0 || height <= 0 || width <= 0) { alert('请输入有效的尺寸参数！'); return; }
+
+            ensureFabrics();
+
+            // Generate fresh pieces with correct dimensions and stable _uid
+            var fresh = calculatePieces(length, height, width, seam, handleLength, handleWidth);
+            assignPieceUids(fresh);
+
+            // Map customPieces by _uid for O(1) lookup of user overrides
+            var userMap = {}, userOnly = [];
+            customPieces.forEach(function(p) { userMap[p._uid] = p; });
+
+            // Apply user overrides to matching algo pieces, collect user-only pieces
+            fresh.forEach(function(p) {
+                var u = userMap[p._uid];
+                if (u) {
+                    p.fabricId = u.fabricId || p.fabricId;
+                    if (u.shape && u.shape !== 'rect') p.shape = u.shape;
+                    if (u.name) p.name = u.name;
+                    userMap[p._uid] = null;
+                }
+            });
+            for (var uid in userMap) {
+                if (userMap[uid] && userMap.hasOwnProperty(uid)) userOnly.push(userMap[uid]);
             }
 
-            const pieces = calculatePieces(length, height, width, seam, handleLength, handleWidth);
-            displayResults(pieces, length, height, width, seam, fabricWidth);
+            var result = fresh.concat(userOnly);
+            customPieces = result.slice();
 
-            const totalArea = pieces.reduce((s, p) => s + p.width * p.height * p.count, 0);
-            const totalPieces = pieces.reduce((s, p) => s + p.count, 0);
+            displayResults(result, length, height, width, seam);
+
+            var totalArea = result.reduce(function(s,p){return s+pieceArea(p)*p.count;}, 0);
+            var totalPieces = result.reduce(function(s,p){return s+p.count;}, 0);
             saveToHistory(
-                { length, height, width, seam, handleLength, handleWidth, fabricWidth },
-                { totalArea: totalArea.toFixed(0), pieceCount: totalPieces }
+                { length:length, height:height, width:width, seam:seam, handleLength:handleLength, handleWidth:handleWidth, mergeSides:document.getElementById('mergeSides').checked },
+                { totalArea:totalArea.toFixed(0), pieceCount:totalPieces, customPieces:JSON.parse(JSON.stringify(customPieces)), fabrics:JSON.parse(JSON.stringify(fabrics)) }
             );
             renderHistory();
             savePreferences();
         }
 
         function calculatePieces(l, h, w, seam, handleL, handleW) {
+            ensureFabrics();
             const cfg = PRODUCT_CONFIG[currentProductType];
             const pieces = [];
-            const add = (name, count, pw, ph, desc, color, shape, extra) => {
-                pieces.push({ name, count, width: pw, height: ph, description: desc, color: color, shape: shape || 'rect', ...extra });
+            const fA = fabrics[0] ? fabrics[0].id : 'fabric_a';
+            const fB = fabrics[1] ? fabrics[1].id : 'fabric_b';
+            const fL = fabrics.find(f => f.id === 'lining') ? 'lining' : (fabrics[2] ? fabrics[2].id : 'lining');
+
+            const add = (name, count, pw, ph, desc, color, shape, extra, fid) => {
+                pieces.push({ name, count, width: pw, height: ph, description: desc, color: color, shape: shape || 'rect', fabricId: fid || fA, ...extra });
             };
 
-            if (cfg.isCustom) return customPieces.length ? JSON.parse(JSON.stringify(customPieces)) : defaultBoxPieces();
+            if (cfg.isCustom) {
+                ensureFabrics();
+                const fa = fabrics[0] ? fabrics[0].id : 'fabric_a';
+                customPieces.forEach(p => { if (!p.fabricId) p.fabricId = fa; });
+                return customPieces.length ? JSON.parse(JSON.stringify(customPieces)) : defaultBoxPieces();
+            }
+
+            const mergeSides = document.getElementById('mergeSides') ?
+                document.getElementById('mergeSides').checked : true;
+            const sideW = w + seam * 2;
+            const canMerge = !cfg.sideShape && !cfg.bottomShape && !cfg.flat;
 
             function defaultBoxPieces() {
                 const p = [];
-                const a = (n,c,pw,ph,d,cl) => p.push({name:n, count:c, width:pw, height:ph, description:d, color:cl, shape:'rect'});
-                a('前片',1,l+seam*2,h+seam*2,'包包正面','#667eea');
-                a('后片',1,l+seam*2,h+seam*2,'包包背面','#764ba2');
-                a('左侧片',1,w+seam*2,h+seam*2,'包包左侧','#f093fb');
-                a('右侧片',1,w+seam*2,h+seam*2,'包包右侧','#f5576c');
-                a('底片',1,l+seam*2,w+seam*2,'包包底部','#4facfe');
+                const a = (n,c,pw,ph,d,cl,fid,xtra) => p.push(Object.assign({name:n, count:c, width:pw, height:ph, description:d, color:cl, shape:'rect', fabricId:fid||fA}, xtra||{}));
+
+                if (mergeSides && canMerge) {
+                    const mergedW = l + seam*2 + sideW * 2;
+                    a('前片（连体）',1, mergedW, h+seam*2, '前片+两侧片连体裁切，虚线处折叠', '#667eea', fA, {mergeSideWidth: sideW});
+                    a('后片（连体）',1, mergedW, h+seam*2, '后片+两侧片连体裁切，虚线处折叠', '#764ba2', fA, {mergeSideWidth: sideW});
+                } else {
+                    a('前片',1, l+seam*2, h+seam*2, '包包正面', '#667eea', fA);
+                    a('后片',1, l+seam*2, h+seam*2, '包包背面', '#764ba2', fA);
+                    a('左侧片',1, sideW, h+seam*2, '包包左侧', '#f093fb', fA);
+                    a('右侧片',1, sideW, h+seam*2, '包包右侧', '#f5576c', fA);
+                }
+                a('底片',1, l+seam*2, sideW, '包包底部', '#4facfe', fA);
                 if (cfg.hasHandles)
-                    a('提手',2,handleL+seam*2,handleW+seam*2,'手提部分','#43e97b');
+                    a('提手',2, handleL+seam*2, handleW+seam*2, '手提部分', '#43e97b', fB);
                 if (cfg.hasLining) {
-                    a('里布前片',1,l+seam*2,h+seam*2,'内衬正面','#fa709a');
-                    a('里布后片',1,l+seam*2,h+seam*2,'内衬背面','#fee140');
+                    if (mergeSides && canMerge) {
+                        const mergedW = l + seam*2 + sideW * 2;
+                        a('里布前片（连体）',1, mergedW, h+seam*2, '内衬前片（含侧片）', '#fa709a', fL, {mergeSideWidth: sideW});
+                        a('里布后片（连体）',1, mergedW, h+seam*2, '内衬后片（含侧片）', '#fee140', fL, {mergeSideWidth: sideW});
+                    } else {
+                        a('里布前片',1, l+seam*2, h+seam*2, '内衬正面', '#fa709a', fL);
+                        a('里布后片',1, l+seam*2, h+seam*2, '内衬背面', '#fee140', fL);
+                        a('里布左侧片',1, sideW, h+seam*2, '内衬左侧', '#f093fb', fL);
+                        a('里布右侧片',1, sideW, h+seam*2, '内衬右侧', '#f5576c', fL);
+                    }
+                    a('里布底片',1, l+seam*2, sideW, '内衬底部', '#4facfe', fL);
                 }
                 return p;
             }
 
             if (cfg.sideShape === 'trapezoid') {
-                add('上片',1,l+seam*2,w/2+seam+1,'笔袋上片（含拉链余量）','#667eea','rect');
-                add('下片',1,l+seam*2,w/2+seam+1,'笔袋下片','#764ba2','rect');
+                add('上片',1,l+seam*2,w/2+seam+1,'笔袋上片（含拉链余量）','#667eea','rect',null,fA);
+                add('下片',1,l+seam*2,w/2+seam+1,'笔袋下片','#764ba2','rect',null,fA);
                 const tw = w + seam * 2;
-                add('侧片',2,tw,h+seam*2,'笔袋侧片（梯形，上窄下宽）','#f093fb','trapezoid',{bottomWidth:tw+1});
+                add('侧片',2,tw,h+seam*2,'笔袋侧片（梯形，上窄下宽）','#f093fb','trapezoid',{bottomWidth:tw+1},fA);
                 if (cfg.hasLining) {
-                    add('里布上片',1,l+seam*2,w/2+seam+1,'内衬上片','#fa709a','rect');
-                    add('里布下片',1,l+seam*2,w/2+seam+1,'内衬下片','#fee140','rect');
+                    add('里布上片',1,l+seam*2,w/2+seam+1,'内衬上片','#fa709a','rect',null,fL);
+                    add('里布下片',1,l+seam*2,w/2+seam+1,'内衬下片','#fee140','rect',null,fL);
                 }
                 return pieces;
             }
@@ -1234,71 +1839,79 @@
             if (cfg.bottomShape === 'circle' && !cfg.flat) {
                 const d = w + seam * 2;
                 const circ = Math.PI * w;
-                add('袋身',1,circ+seam*2,h+seam*3,'包身（周长×高，含穿绳余量）','#667eea','rect');
-                add('底片',1,d,d,'圆形底部（直径）','#4facfe','circle',{diameter:d});
+                add('袋身',1,circ+seam*2,h+seam*3,'包身（周长×高，含穿绳余量）','#667eea','rect',null,fA);
+                add('底片',1,d,d,'圆形底部（直径）','#4facfe','circle',{diameter:d},fA);
                 if (cfg.hasLining) {
-                    add('里布袋身',1,circ+seam*2,h+seam*3,'内衬包身','#fa709a','rect');
-                    add('里布底片',1,d,d,'内衬圆形底','#fee140','circle',{diameter:d});
+                    add('里布袋身',1,circ+seam*2,h+seam*3,'内衬包身','#fa709a','rect',null,fL);
+                    add('里布底片',1,d,d,'内衬圆形底','#fee140','circle',{diameter:d},fL);
                 }
                 return pieces;
             }
 
             if (cfg.flat) {
-                add('表布',1,l+seam*2,h+seam*2,'隔热垫正面','#667eea','rounded',{cornerRadius:2+seam});
-                add('里布',1,l+seam*2,h+seam*2,'隔热垫背面','#fa709a','rounded',{cornerRadius:2+seam});
-                add('铺棉',1,l,h,'夹层铺棉（不含缝份）','#43e97b','rect');
+                const fBat = fabrics.find(f => f.id === 'batting') ? 'batting' : fB;
+                add('表布',1,l+seam*2,h+seam*2,'隔热垫正面','#667eea','rounded',{cornerRadius:2+seam},fA);
+                add('里布',1,l+seam*2,h+seam*2,'隔热垫背面','#fa709a','rounded',{cornerRadius:2+seam},fB);
+                add('铺棉',1,l,h,'夹层铺棉（不含缝份）','#43e97b','rect',null,fBat);
                 return pieces;
             }
 
             return defaultBoxPieces();
         }
 
-        function displayResults(pieces, l, h, w, seam, fabricWidth) {
+        function displayResults(pieces, l, h, w, seam) {
+            ensureFabrics();
             document.getElementById('resultSection').classList.add('show');
-
             window._lastPieces = pieces;
 
-            let totalArea = 0;
-            let totalPieces = 0;
-
-            pieces.forEach(piece => {
-                totalArea += piece.width * piece.height * piece.count;
-                totalPieces += piece.count;
-            });
+            var totalArea = pieces.reduce(function(s,p){return s+pieceArea(p)*p.count;},0);
+            var totalPieces = pieces.reduce(function(s,p){return s+p.count;},0);
 
             document.getElementById('totalArea').textContent = totalArea.toFixed(0);
             document.getElementById('pieceCount').textContent = totalPieces;
+            document.getElementById('fabricWidthStat').textContent = '按面料';
 
-            const seamLength = (l + w) * 2 + h * 4;
+            var seamLength = (l + w) * 2 + h * 4;
             document.getElementById('seamLength').textContent = (seamLength * 2).toFixed(0);
 
-            const layout = layoutPieces(pieces, fabricWidth);
-            document.getElementById('fabricWidth').textContent = fabricWidth;
-            document.getElementById('fabricWidth').parentElement.querySelector('.label').textContent = '布幅宽度 (cm)';
+            // Replace fabric group cards, keep summary grid intact
+            var groups = groupByFabric(pieces);
+            var statsContainer = document.getElementById('fabricStatsContainer');
+            var existingGroups = statsContainer.querySelectorAll('.fabric-stat-group');
+            existingGroups.forEach(function(g) { g.remove(); });
 
-            let layoutLenEl = document.getElementById('layoutLength');
-            let layoutUtilEl = document.getElementById('layoutUtilization');
-            if (!layoutLenEl) {
-                const grid = document.querySelector('.summary-grid');
-                const lenItem = document.createElement('div');
-                lenItem.className = 'summary-item';
-                lenItem.innerHTML = '<div class="value" id="layoutLength">0</div><div class="label">所需布料长度 (cm)</div>';
-                grid.appendChild(lenItem);
-                const utilItem = document.createElement('div');
-                utilItem.className = 'summary-item';
-                utilItem.innerHTML = '<div class="value" id="layoutUtilization">0%</div><div class="label">布料利用率</div>';
-                grid.appendChild(utilItem);
-                layoutLenEl = document.getElementById('layoutLength');
-                layoutUtilEl = document.getElementById('layoutUtilization');
-            }
-            document.getElementById('layoutLength').textContent = layout.requiredLength.toFixed(1);
-            document.getElementById('layoutUtilization').textContent = Math.round(layout.utilization) + '%';
+            Object.values(groups).forEach(function(g) {
+                if (g.pieces.length === 0) return;
+                var fw = g.fabric.width || 110;
+                var ml = g.fabric.maxLength || null;
+                var layout = layoutPieces(g.pieces, fw, ml);
+                var totalA = g.pieces.reduce(function(s,p){return s+pieceArea(p)*p.count;},0);
+                var totalP = g.pieces.reduce(function(s,p){return s+p.count;},0);
+                var div = document.createElement('div');
+                div.className = 'fabric-stat-group';
+                var summaryLabel = ml ? '幅宽'+fw+'cm 可用'+ml+'cm' : '幅宽'+fw+'cm';
+                var lenLabel = ml ? '已用长度 (cm)' : '所需长度 (cm)';
+                div.innerHTML = '<div class="fabric-stat-header" style="background:'+g.fabric.color+';"><span>'+g.fabric.name+'</span><span style="font-weight:400;font-size:0.75rem;opacity:0.85;">'+summaryLabel+'</span></div>'+
+                    '<div class="fabric-stat-grid">'+
+                        '<div class="fabric-stat-item"><div class="value" style="color:'+g.fabric.color+';">'+totalP+'</div><div class="label">裁片数</div></div>'+
+                        '<div class="fabric-stat-item"><div class="value" style="color:'+g.fabric.color+';">'+totalA.toFixed(0)+'</div><div class="label">面积 (cm²)</div></div>'+
+                        '<div class="fabric-stat-item"><div class="value" style="color:'+g.fabric.color+';">'+layout.requiredLength.toFixed(1)+'</div><div class="label">'+lenLabel+'</div></div>'+
+                        '<div class="fabric-stat-item"><div class="value" style="color:'+g.fabric.color+';">'+Math.round(layout.utilization)+'%</div><div class="label">利用率</div></div>'+
+                    '</div>';
+                if (layout.overflowPieces && layout.overflowPieces.length > 0) {
+                    div.innerHTML += '<div class="layout-warning" style="margin:0 8px 8px;">⚠ '+layout.overflowPieces.length+'片裁片超出布料范围，无法排入</div>';
+                }
+                statsContainer.appendChild(div);
+            });
 
             document.getElementById('printProductType').textContent = PRODUCT_CONFIG[currentProductType].name;
             document.getElementById('printDate').textContent = new Date().toLocaleDateString('zh-CN');
 
             const pieceList = document.getElementById('pieceList');
-            pieceList.innerHTML = pieces.map(piece => `
+            pieceList.innerHTML = pieces.map(piece => {
+                const fid = piece.fabricId || 'fabric_a';
+                const fb = getFabricById(fid);
+                return `
                 <div class="piece-item">
                     <div class="piece-visual" style="border-color: ${piece.color}">
                         <svg viewBox="0 0 40 40">
@@ -1306,15 +1919,35 @@
                         </svg>
                     </div>
                     <div class="piece-info">
-                        <div class="piece-name">${piece.name}</div>
+                        <div class="piece-name">${piece.name} <span class="fabric-tag" style="background:${fb.color};color:#fff;font-size:0.7rem;padding:1px 6px;border-radius:8px;white-space:nowrap;">${fb.name}</span></div>
                         <div class="piece-size">${piece.width.toFixed(1)} × ${piece.height.toFixed(1)} cm</div>
                         <div style="font-size: 0.8rem; color: #999; margin-top: 3px;">${piece.description}</div>
                     </div>
                     <span class="piece-count">×${piece.count}</span>
                 </div>
-            `).join('');
+            `}).join('');
 
             drawDiagrams(pieces);
+
+            // 成品结构图暂时隐藏
+            // try { drawStructurePreview(pieces, l, h, w, currentProductType); } catch(e) { console.error('drawStructurePreview error:', e); }
+
+            try {
+                drawCuttingLayout(pieces, l, h, w, currentProductType);
+            } catch(e) {
+                console.error('drawCuttingLayout error:', e);
+                document.getElementById('cuttingLayoutCard').insertAdjacentHTML('afterbegin','<div style=\"color:red;font-size:12px\">⚠ 渲染失败: '+e.message+'</div>');
+            }
+
+            // Draw per-fabric layout diagrams
+            var layoutContainer = document.getElementById('fabricLayouts');
+            layoutContainer.innerHTML = '';
+            Object.values(groups).forEach(function(g) {
+                if (g.pieces.length === 0) return;
+                var fw = g.fabric.width || 110;
+                var ml = g.fabric.maxLength || null;
+                drawFabricLayout(g.fabric, g.pieces, fw, ml, layoutContainer);
+            });
 
             const tips = generateTips(l, h, w, seam);
             document.getElementById('tipsList').innerHTML = tips.map(tip => `<li>${tip}</li>`).join('');
@@ -1322,54 +1955,175 @@
             document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function layoutPieces(pieces, fabricWidth) {
-            const expanded = [];
-            pieces.forEach(p => {
-                for (let i = 0; i < p.count; i++) {
-                    expanded.push({ ...p, _id: p.name + (p.count > 1 ? ' ' + (i+1) : '') });
+        function suggestScraps(remainingArea) {
+            const suggestions = [];
+            if (remainingArea > 1500) suggestions.push('大肠发圈 ×3');
+            if (remainingArea > 600) suggestions.push('零钱包 ×1');
+            if (remainingArea > 200) suggestions.push('卡包 ×1');
+            return suggestions;
+        }
+
+        function drawFabricLayout(fabric, pieces, fabricWidth, maxLength, container) {
+            if (pieces.length === 0) return;
+            const layout = layoutPieces(pieces, fabricWidth);
+            const div = document.createElement('div');
+            div.className = 'fabric-layout-item';
+            var headerText = maxLength
+                ? fabric.name + ' — 利用率 ' + Math.round(layout.utilization) + '%（幅宽'+fabricWidth+'cm 可用'+maxLength+'cm）'
+                : fabric.name + ' — 用料 ' + layout.requiredLength.toFixed(1) + 'cm，利用率 ' + Math.round(layout.utilization) + '%';
+            div.innerHTML = '<div class="fl-header"><span class="fl-dot" style="background:'+fabric.color+';"></span>' + headerText + '</div>';
+
+            var canvas = document.createElement('canvas');
+            var dpr = window.devicePixelRatio || 1;
+            var maxDisplayWidth = 680;
+            var effectiveLength = maxLength ? Math.max(maxLength, layout.requiredLength) : layout.requiredLength;
+            var displayWidth = Math.min(maxDisplayWidth, fabricWidth * 5);
+            var scale = displayWidth / fabricWidth;
+            var displayHeight = Math.max(120, effectiveLength * scale + 25);
+            canvas.width = displayWidth * dpr;
+            canvas.height = displayHeight * dpr;
+            canvas.style.width = displayWidth + 'px';
+            canvas.style.height = displayHeight + 'px';
+            var ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+            ctx.clearRect(0, 0, displayWidth, displayHeight);
+
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, displayWidth, displayHeight);
+
+            var gap = 0.25 * scale;
+            layout.pieces.forEach(function(piece) {
+                const px = piece._x * scale + gap;
+                const py = piece._y * scale + gap;
+                const pw = Math.max(piece.width * scale - gap * 2, 1);
+                const ph = Math.max(piece.height * scale - gap * 2, 1);
+
+                ctx.fillStyle = piece.color + '50';
+                ctx.fillRect(px, py, pw, ph);
+                ctx.strokeStyle = piece.color;
+                ctx.lineWidth = Math.max(1, 1.5);
+                ctx.strokeRect(px, py, pw, ph);
+
+                ctx.fillStyle = '#333';
+                const fontSize = Math.max(8, Math.min(11, ph * 0.3, pw * 0.14));
+                ctx.font = 'bold ' + fontSize + 'px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const label = piece._id || piece.name;
+                ctx.fillText(label, px + pw / 2, py + ph / 2);
+                if (pw > 45 && ph > 14) {
+                    ctx.font = (fontSize - 1) + 'px Arial';
+                    ctx.fillText(piece.width.toFixed(0) + '×' + piece.height.toFixed(0), px + pw / 2, py + ph / 2 + fontSize + 2);
+                }
+
+                // Grain line
+                const cx = px + pw / 2, cy = py + ph / 2;
+                const arrowLen = Math.min(10, ph * 0.22);
+                ctx.save();
+                ctx.globalAlpha = 0.3;
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 0.8;
+                ctx.setLineDash([2, 2]);
+                ctx.beginPath();
+                ctx.moveTo(cx, cy + arrowLen);
+                ctx.lineTo(cx, cy - arrowLen);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.beginPath();
+                ctx.moveTo(cx - 2, cy - arrowLen + 3);
+                ctx.lineTo(cx, cy - arrowLen);
+                ctx.lineTo(cx + 2, cy - arrowLen + 3);
+                ctx.stroke();
+                ctx.restore();
+            });
+
+            // Fabric boundary
+            ctx.strokeStyle = '#999';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            var drawEnd = layout.requiredLength * scale;
+            if (maxLength) drawEnd = Math.max(maxLength * scale, drawEnd);
+            ctx.strokeRect(0, 0, displayWidth, drawEnd);
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(fabricWidth + 'cm（幅宽）', displayWidth / 2, displayHeight - 4);
+
+            ctx.save();
+            ctx.translate(displayWidth - 5, drawEnd / 2);
+            ctx.rotate(-Math.PI / 2);
+            var lenLabel = maxLength ? '用料 ' + layout.requiredLength.toFixed(0) + 'cm（可用' + maxLength + 'cm）' : layout.requiredLength.toFixed(0) + 'cm';
+            ctx.fillText(lenLabel, 0, 0);
+            ctx.restore();
+
+            div.appendChild(canvas);
+
+            // Scrap suggestion
+            const usedArea = layout.requiredLength * fabricWidth;
+            const remaining = usedArea - layout.totalArea;
+            const scraps = suggestScraps(remaining);
+            if (scraps.length && layout.utilization < 95) {
+                const scrapDiv = document.createElement('div');
+                scrapDiv.className = 'scrap-suggestion';
+                scrapDiv.innerHTML = '💡 预估剩余布料可做：<strong>' + scraps.join('、') + '</strong>';
+                div.appendChild(scrapDiv);
+            }
+
+            container.appendChild(div);
+        }
+
+        function layoutPieces(pieces, fabricWidth, maxLength) {
+            var expanded = [];
+            pieces.forEach(function(p) {
+                for (var i = 0; i < p.count; i++) {
+                    expanded.push({ width: p.width, height: p.height, color: p.color, _id: p.name + (p.count > 1 ? ' ' + (i+1) : ''), shape: p.shape, mergeSideWidth: p.mergeSideWidth, diameter: p.diameter });
                 }
             });
 
-            expanded.sort((a, b) => b.height - a.height);
+            expanded.sort(function(a, b) { return b.height - a.height || b.width - a.width; });
 
-            const shelves = [];
-            for (const piece of expanded) {
-                let placed = false;
-                for (const shelf of shelves) {
-                    if (shelf.remainingWidth >= piece.width) {
-                        piece._x = shelf.x;
-                        piece._y = shelf.topY;
-                        shelf.x += piece.width;
-                        shelf.remainingWidth -= piece.width;
-                        placed = true;
-                        break;
+            var shelves = [];
+            var overflowPieces = [];
+            expanded.forEach(function(piece) {
+                if (piece.width > fabricWidth) { overflowPieces.push(piece); return; }
+                var bestIdx = -1, bestRemW = Infinity;
+                for (var si = 0; si < shelves.length; si++) {
+                    var remW = shelves[si].remainingWidth;
+                    if (remW >= piece.width && remW < bestRemW) {
+                        bestIdx = si;
+                        bestRemW = remW;
                     }
                 }
-                if (!placed) {
-                    const shelfTopY = shelves.length > 0
-                        ? shelves[shelves.length - 1].topY + shelves[shelves.length - 1].height
-                        : 0;
-                    const shelf = {
-                        topY: shelfTopY,
-                        x: 0,
-                        remainingWidth: fabricWidth - piece.width,
-                        height: piece.height
-                    };
+                if (bestIdx >= 0) {
+                    var shelf = shelves[bestIdx];
+                    var wouldY = shelf.topY + shelf.height;
+                    if (maxLength && wouldY > maxLength) { overflowPieces.push(piece); return; }
+                    piece._x = shelf.x;
+                    piece._y = shelf.topY;
+                    shelf.x += piece.width;
+                    shelf.remainingWidth -= piece.width;
+                } else {
+                    var shelfTopY = shelves.length > 0 ? shelves[shelves.length - 1].topY + shelves[shelves.length - 1].height : 0;
+                    var wouldY = shelfTopY + piece.height;
+                    if (maxLength && wouldY > maxLength) { overflowPieces.push(piece); return; }
+                    shelves.push({ topY: shelfTopY, x: piece.width, remainingWidth: fabricWidth - piece.width, height: piece.height });
                     piece._x = 0;
                     piece._y = shelfTopY;
-                    shelves.push(shelf);
                 }
-            }
+            });
 
-            const requiredLength = shelves.length > 0
+            var requiredLength = shelves.length > 0
                 ? shelves[shelves.length - 1].topY + shelves[shelves.length - 1].height
                 : 0;
+            if (maxLength && requiredLength < maxLength) requiredLength = maxLength;
 
-            const totalArea = expanded.reduce((s, p) => s + p.width * p.height, 0);
-            const fabricArea = fabricWidth * requiredLength;
-            const utilization = fabricArea > 0 ? (totalArea / fabricArea) * 100 : 0;
+            var totalArea = expanded.filter(function(p){return overflowPieces.indexOf(p)<0;}).reduce(function(s,p){return s+pieceArea(p);},0);
+            var fabricArea = fabricWidth * (maxLength || requiredLength);
+            var utilization = fabricArea > 0 ? (totalArea / fabricArea) * 100 : 0;
 
-            return { shelves, pieces: expanded, requiredLength, utilization, totalArea, fabricWidth };
+            return { shelves: shelves, pieces: expanded.filter(function(p){return overflowPieces.indexOf(p)<0;}), requiredLength: requiredLength, utilization: utilization, totalArea: totalArea, fabricWidth: fabricWidth, overflowPieces: overflowPieces };
         }
 
         function drawDiagrams(pieces) {
@@ -1425,10 +2179,14 @@
                 scale = Math.min(maxWidth / d, maxHeight / d);
                 drawWidth = drawHeight = d * scale;
             } else if (shape === 'trapezoid') {
-                const bw = piece.bottomWidth || pw;
+                const bw = piece.bottomWidth || pw * 0.65;
                 const maxW = Math.max(pw, bw);
                 scale = Math.min(maxWidth / maxW, maxHeight / ph);
                 drawWidth = maxW * scale;
+                drawHeight = ph * scale;
+            } else if (shape === 'notched') {
+                scale = Math.min(maxWidth / pw, maxHeight / ph);
+                drawWidth = pw * scale;
                 drawHeight = ph * scale;
             } else {
                 scale = Math.min(maxWidth / pw, maxHeight / ph);
@@ -1445,18 +2203,40 @@
             ctx.beginPath();
 
             if (shape === 'circle') {
-                const r = drawWidth / 2;
+                var r = drawWidth / 2;
                 ctx.arc(canvasWidth / 2, canvasHeight / 2, r, 0, Math.PI * 2);
+            } else if (shape === 'notched') {
+                var nl = piece.notchLeft || {depth:0, height:0, top:0};
+                var nr = piece.notchRight|| {depth:0, height:0, top:0};
+                var nld = nl.depth * scale, nlh = nl.height * scale, nlt = nl.top * scale;
+                var nrd = nr.depth * scale, nrh = nr.height * scale, nrt = nr.top * scale;
+                // Clockwise from top-left
+                ctx.moveTo(x, y);
+                if (nld > 0) {
+                    ctx.lineTo(x, y + nlt);
+                    ctx.lineTo(x + nld, y + nlt);
+                    ctx.lineTo(x + nld, y + nlt + nlh);
+                    ctx.lineTo(x, y + nlt + nlh);
+                }
+                ctx.lineTo(x, y + drawHeight);
+                ctx.lineTo(x + drawWidth, y + drawHeight);
+                if (nrd > 0) {
+                    ctx.lineTo(x + drawWidth, y + nrt + nrh);
+                    ctx.lineTo(x + drawWidth - nrd, y + nrt + nrh);
+                    ctx.lineTo(x + drawWidth - nrd, y + nrt);
+                    ctx.lineTo(x + drawWidth, y + nrt);
+                }
+                ctx.lineTo(x + drawWidth, y);
             } else if (shape === 'trapezoid') {
-                const bw = piece.bottomWidth || pw;
+                const bw = piece.bottomWidth || pw * 0.65;
                 const topW = pw * scale;
                 const botW = bw * scale;
-                const leftX = x + (drawWidth - topW) / 2;
-                const rightX = leftX + topW;
-                ctx.moveTo(leftX, y);
-                ctx.lineTo(rightX, y);
-                ctx.lineTo(x + drawWidth, y + drawHeight);
-                ctx.lineTo(x, y + drawHeight);
+                const topLeft = x + (drawWidth - topW) / 2;
+                const botLeft = x + (drawWidth - botW) / 2;
+                ctx.moveTo(topLeft, y);
+                ctx.lineTo(topLeft + topW, y);
+                ctx.lineTo(botLeft + botW, y + drawHeight);
+                ctx.lineTo(botLeft, y + drawHeight);
             } else if (shape === 'rounded') {
                 const r = (piece.cornerRadius || 2) * scale;
                 ctx.moveTo(x + r, y);
@@ -1476,19 +2256,111 @@
             ctx.fill();
             ctx.stroke();
 
-            if (shape !== 'circle') {
+            if (shape === 'circle') {
                 ctx.fillStyle = '#333';
                 ctx.font = '10px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText(`${pw.toFixed(0)}`, canvasWidth/2, y + drawHeight + 13);
-                ctx.save();
-                ctx.translate(x - 5, canvasHeight/2);
-                ctx.rotate(-Math.PI/2);
-                ctx.fillText(`${ph.toFixed(0)}`, 0, 0);
-                ctx.restore();
+                ctx.fillText('Ø' + (piece.diameter || pw).toFixed(0), canvasWidth/2, canvasHeight/2 + 4);
+            } else {
+                if (shape === 'trapezoid') {
+                    const bw = piece.bottomWidth || pw * 0.65;
+                    const topW = pw * scale;
+                    const botW = bw * scale;
+                    const topLeft = x + (drawWidth - topW) / 2;
+                    const botLeft = x + (drawWidth - botW) / 2;
+                    // Top edge label centered above top line
+                    ctx.fillStyle = '#333';
+                    ctx.font = '9px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(pw.toFixed(0), topLeft + topW/2, y - 4);
+                    // Bottom edge label centered below bottom line
+                    ctx.fillText(bw.toFixed(0), botLeft + botW/2, y + drawHeight + 13);
+                    // Height labels — left side and right side with rotation
+                    // Left height
+                    ctx.textAlign = 'right';
+                    ctx.save();
+                    const leftMidY = y + drawHeight/2;
+                    ctx.translate(topLeft - 6, leftMidY);
+                    ctx.rotate(-Math.PI/2);
+                    ctx.fillText(ph.toFixed(0), 0, 0);
+                    ctx.restore();
+                    // Right height
+                    ctx.textAlign = 'left';
+                    ctx.save();
+                    ctx.translate(topLeft + topW + 6, leftMidY);
+                    ctx.rotate(-Math.PI/2);
+                    ctx.fillText(ph.toFixed(0), 0, 0);
+                    ctx.restore();
+                    // Side edge lengths (approximate)
+                    const sideLen = Math.sqrt(Math.pow((topW - botW)/2, 2) + Math.pow(ph * scale, 2)) / scale;
+                    if (sideLen !== ph && sideLen > 0.1) {
+                        ctx.fillStyle = '#666';
+                        ctx.font = '8px Arial';
+                        ctx.textAlign = 'left';
+                        const midLX = topLeft + (botLeft - topLeft) * 0.4;
+                        const midLY = y + drawHeight * 0.45;
+                        ctx.fillText(sideLen.toFixed(0), midLX + 2, midLY);
+                        ctx.textAlign = 'right';
+                        ctx.fillText(sideLen.toFixed(0), topLeft + topW - (topLeft - botLeft) * 0.4 - 2, midLY);
+                    }
+                } else if (shape === 'notched') {
+                    var nld = (piece.notchLeft  || {}).depth || 0;
+                    var nlh = (piece.notchLeft  || {}).height || 0;
+                    var nrd = (piece.notchRight || {}).depth || 0;
+                    var nrh = (piece.notchRight || {}).height || 0;
+                    var midW = pw - nld - nrd;
+                    ctx.fillStyle = '#333'; ctx.font = '9px Arial'; ctx.textAlign = 'center';
+                    ctx.fillText(pw.toFixed(0) + ' ('+midW.toFixed(0)+')', canvasWidth/2, y - 2);
+                    ctx.fillText(pw.toFixed(0), canvasWidth/2, y + drawHeight + 13);
+                    ctx.save();
+                    ctx.translate(x - 4, canvasHeight/2);
+                    ctx.rotate(-Math.PI/2);
+                    ctx.fillText(ph.toFixed(0), 0, 0);
+                    ctx.restore();
+                    // Notch dims
+                    if (nld > 0) {
+                        ctx.fillStyle = '#666'; ctx.font = '7px Arial'; ctx.textAlign = 'center';
+                        var nly = (piece.notchLeft || {}).top || 0;
+                        ctx.fillText(nld+'×'+nlh, x + nld*scale/2, y + (nly + nlh/2)*scale);
+                    }
+                    if (nrd > 0) {
+                        ctx.fillStyle = '#666'; ctx.font = '7px Arial'; ctx.textAlign = 'center';
+                        var nry = (piece.notchRight || {}).top || 0;
+                        ctx.fillText(nrd+'×'+nrh, x + drawWidth - nrd*scale/2, y + (nry + nrh/2)*scale);
+                    }
+                } else {
+                    ctx.fillStyle = '#333';
+                    ctx.font = '10px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(pw.toFixed(0), canvasWidth/2, y + drawHeight + 13);
+                    ctx.save();
+                    ctx.translate(x - 5, canvasHeight/2);
+                    ctx.rotate(-Math.PI/2);
+                    ctx.fillText(ph.toFixed(0), 0, 0);
+                    ctx.restore();
+                }
 
                 const cx = canvasWidth/2, cy = canvasHeight/2;
                 const arrowLen = Math.min(12, drawHeight * 0.18);
+
+                // Fold lines for merged pieces
+                const sideW = (piece.mergeSideWidth) ? piece.mergeSideWidth * scale : 0;
+                if (sideW > 0) {
+                    ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+                    ctx.lineWidth = 1;
+                    ctx.setLineDash([4, 4]);
+                    ctx.beginPath();
+                    ctx.moveTo(x + sideW, y);
+                    ctx.lineTo(x + sideW, y + drawHeight);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(x + drawWidth - sideW, y);
+                    ctx.lineTo(x + drawWidth - sideW, y + drawHeight);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+
+                // Grain line arrow
                 ctx.strokeStyle = 'rgba(0,0,0,0.25)';
                 ctx.lineWidth = 1;
                 ctx.setLineDash([3, 3]);
@@ -1502,58 +2374,836 @@
                 ctx.lineTo(cx, cy - arrowLen);
                 ctx.lineTo(cx + 3, cy - arrowLen + 4);
                 ctx.stroke();
-            } else {
-                ctx.fillStyle = '#333';
-                ctx.font = '10px Arial';
-                ctx.textAlign = 'center';
-                ctx.fillText(`Ø${pw.toFixed(0)}`, canvasWidth/2, canvasHeight/2 + 4);
+            }
+        }
+
+        // ============================================================
+        // 3D 旋转预览 + 裁剪展开图
+        // ============================================================
+
+        function lightenColor(hex, amt) {
+            var r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+            r = Math.min(255, Math.round(r + (255 - r) * amt));
+            g = Math.min(255, Math.round(g + (255 - g) * amt));
+            b = Math.min(255, Math.round(b + (255 - b) * amt));
+            return '#' + [r,g,b].map(function(v){return ('0'+v.toString(16)).slice(-2);}).join('');
+        }
+
+        function darkenColor(hex, amt) {
+            var r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+            r = Math.max(0, Math.round(r * (1 - amt)));
+            g = Math.max(0, Math.round(g * (1 - amt)));
+            b = Math.max(0, Math.round(b * (1 - amt)));
+            return '#' + [r,g,b].map(function(v){return ('0'+v.toString(16)).slice(-2);}).join('');
+        }
+
+
+        // ---- Finished Product Preview ----
+        var PW_DESIGN = 800, PH_DESIGN = 580;
+
+        function drawStructurePreview(pieces, l, h, w, productType) {
+            var canvas = document.getElementById('structureCanvas');
+            var legendEl = document.getElementById('previewLegend');
+            if (!canvas) return;
+
+            // Adaptive width: fit container, between 320 and 780
+            var wrap = canvas.parentNode;
+            var cw = Math.min(wrap ? wrap.clientWidth - 10 : 780, 780);
+            cw = Math.max(cw, 310);
+            var scale = cw / PW_DESIGN;
+            var PW = cw;
+            var PH = Math.round(PH_DESIGN * scale);
+
+            var cfg = PRODUCT_CONFIG[productType];
+            var groups = groupByFabric(pieces);
+            var fabricList = [];
+            for (var k in groups) {
+                if (groups[k].pieces.length > 0)
+                    fabricList.push({id:k, name:groups[k].fabric.name, color:groups[k].fabric.color});
+            }
+            if (fabricList.length === 0) return;
+            var mc = fabricList[0].color;
+            var ac = fabricList.length > 1 ? fabricList[1].color : mc;
+            var lc = '#c0c0c0';
+            for (var k2 in groups) {
+                if (groups[k2].fabric.name === '里布' || groups[k2].fabric.id === 'lining')
+                    lc = groups[k2].fabric.color;
+            }
+
+            var dpr = window.devicePixelRatio || 1;
+            canvas.width = PW * dpr; canvas.height = PH * dpr;
+            canvas.style.width = PW + 'px'; canvas.style.height = PH + 'px';
+            var ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+            ctx.scale(scale, scale); // scale all drawing ops to fit
+
+            // Clean background
+            ctx.fillStyle = '#fdfdfd'; ctx.fillRect(0, 0, PW_DESIGN, PH_DESIGN);
+
+            // Title
+            ctx.fillStyle = '#333'; ctx.font = 'bold 14px Arial'; ctx.textAlign = 'center';
+            ctx.fillText(cfg.icon + ' ' + cfg.name + ' — 成品效果图', PW_DESIGN/2, 20);
+
+            // Dispatch per product type
+            if (productType === 'drawstring') drawDrawstringBag(ctx, l, h, w, mc, ac, lc, groups);
+            else if (productType === 'cupsleeve') drawCupSleeve(ctx, l, h, w, mc, groups);
+            else if (productType === 'potholder') drawPotholderView(ctx, l, h, mc, ac, lc, groups);
+            else if (productType === 'pencil') drawPencilCase(ctx, l, h, w, mc, ac, lc, groups);
+            else drawBoxBag(ctx, l, h, w, mc, ac, lc, groups, cfg.hasHandles, productType);
+
+            // Legend
+            if (legendEl) {
+                legendEl.innerHTML = fabricList.map(function(f) {
+                    return '<div class="preview-legend-item"><span class="preview-legend-dot" style="background:'+f.color+';"></span>'+f.name+'</div>';
+                }).join('');
+            }
+        }
+
+        // ---- Helpers ----
+        function rr(ctx, x, y, w, h, r) {
+            ctx.moveTo(x+r, y); ctx.lineTo(x+w-r, y);
+            ctx.arcTo(x+w, y, x+w, y+r, r); ctx.lineTo(x+w, y+h-r);
+            ctx.arcTo(x+w, y+h, x+w-r, y+h, r); ctx.lineTo(x+r, y+h);
+            ctx.arcTo(x, y+h, x, y+h-r, r); ctx.lineTo(x, y+r); ctx.arcTo(x, y, x+r, y, r);
+        }
+
+        function rectShadow(ctx, x, y, w, h) {
+            ctx.shadowColor = 'rgba(0,0,0,0.10)'; ctx.shadowBlur = 12;
+            ctx.shadowOffsetX = 2; ctx.shadowOffsetY = 3;
+        }
+        function noShadow(ctx) {
+            ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
+            ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
+        }
+
+        function drawSolidRect(ctx, x, y, w, h, color, round) {
+            round = round || 6;
+            var g = ctx.createLinearGradient(x, y, x + w, y + h);
+            g.addColorStop(0, lightenColor(color, 0.12));
+            g.addColorStop(0.4, lightenColor(color, 0.03));
+            g.addColorStop(0.6, darkenColor(color, 0.03));
+            g.addColorStop(1, darkenColor(color, 0.12));
+            ctx.fillStyle = g;
+            ctx.beginPath(); rr(ctx, x, y, w, h, round); ctx.fill();
+            ctx.strokeStyle = darkenColor(color, 0.20);
+            ctx.lineWidth = 2;
+            ctx.beginPath(); rr(ctx, x, y, w, h, round); ctx.stroke();
+        }
+
+        function drawStitchRect(ctx, x, y, w, h, r) {
+            var sm = Math.max(6, w * 0.04);
+            ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1.1;
+            ctx.setLineDash([3, 4]);
+            ctx.beginPath(); rr(ctx, x+sm, y+sm, w-sm*2, h-sm*2, r-1); ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
+        function drawSizeBadge(ctx, cx, cy, w, h, text1, text2) {
+            ctx.fillStyle = 'rgba(255,255,255,0.75)';
+            ctx.beginPath(); rr(ctx, cx-w/2, cy-h/2, w, h, 10); ctx.fill();
+            ctx.strokeStyle = 'rgba(0,0,0,0.08)'; ctx.lineWidth = 1;
+            ctx.beginPath(); rr(ctx, cx-w/2, cy-h/2, w, h, 10); ctx.stroke();
+            ctx.fillStyle = '#222'; ctx.font = 'bold 17px Arial'; ctx.textAlign = 'center';
+            ctx.fillText(text1, cx, cy - 2);
+            if (text2) { ctx.fillStyle = '#666'; ctx.font = '11px Arial'; ctx.fillText(text2, cx, cy + 16); }
+        }
+
+        function drawFabricLegend(ctx, rx, ry, rw, groups) {
+            ctx.fillStyle = '#fff'; ctx.strokeStyle = '#e8e8e8'; ctx.lineWidth = 1;
+            ctx.beginPath(); rr(ctx, rx, ry, rw, 100, 6); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#555'; ctx.font = 'bold 10px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('面料图例', rx + rw/2, ry + 14);
+            var fKeys = Object.keys(groups), yi = ry + 30;
+            fKeys.forEach(function(fk, fi) {
+                var gf = groups[fk]; if (gf.pieces.length === 0) return;
+                ctx.fillStyle = gf.fabric.color; ctx.fillRect(rx + 10, yi + fi*20, 12, 12);
+                ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.lineWidth = 0.5;
+                ctx.strokeRect(rx + 10, yi + fi*20, 12, 12);
+                ctx.fillStyle = '#555'; ctx.font = '9px Arial'; ctx.textAlign = 'left';
+                ctx.fillText(gf.fabric.name, rx + 28, yi + fi*20 + 10);
+            });
+        }
+
+        // ============ BOX BAG (手提包/托特包/化妆包/收纳盒) ============
+        function drawBoxBag(ctx, L, H, W, mc, ac, lc, groups, hasHandles, pt) {
+            // Main front view: center-left, large
+            var mLeft = 20, mTop = 30, mW = 510, mH = 440;
+
+            // Scale to fit
+            var scale = Math.min(mH / Math.max(H, 1), mW / Math.max(L, 1), 3.0);
+            var bw = L * scale, bh = H * scale;
+            var bx = mLeft + (mW - bw) / 2;
+            var by = mTop + (mH - bh) / 2;
+
+            // Shadow
+            rectShadow(ctx, bx, by, bw, bh);
+
+            // Body
+            var g = ctx.createLinearGradient(bx, by, bx + bw, by + bh);
+            g.addColorStop(0, lightenColor(mc, 0.15));
+            g.addColorStop(0.3, lightenColor(mc, 0.05));
+            g.addColorStop(0.7, darkenColor(mc, 0.03));
+            g.addColorStop(1, darkenColor(mc, 0.15));
+            ctx.fillStyle = g;
+            ctx.beginPath(); rr(ctx, bx, by, bw, bh, 8); ctx.fill();
+            noShadow(ctx);
+
+            // Outer stroke
+            ctx.strokeStyle = darkenColor(mc, 0.22); ctx.lineWidth = 2.5;
+            ctx.beginPath(); rr(ctx, bx, by, bw, bh, 8); ctx.stroke();
+
+            // Inner stitch
+            drawStitchRect(ctx, bx, by, bw, bh, 8);
+
+            // Fabric texture lines
+            ctx.save();
+            ctx.beginPath(); rr(ctx, bx, by, bw, bh, 8); ctx.clip();
+            ctx.fillStyle = 'rgba(0,0,0,0.012)';
+            for (var ty = 0; ty < bh; ty += 12) ctx.fillRect(bx, by + ty, bw, 6);
+            ctx.restore();
+
+            // Top opening (lining visible) - a subtle darker strip at top
+            ctx.fillStyle = lc + '60';
+            ctx.beginPath();
+            ctx.moveTo(bx + 8, by); ctx.lineTo(bx + bw - 8, by);
+            ctx.lineTo(bx + bw - 12, by + 10); ctx.lineTo(bx + 12, by + 10);
+            ctx.closePath(); ctx.fill();
+
+            // Handles
+            if (hasHandles) {
+                var hw2 = Math.max(5 * scale, 5);
+                var hh = Math.max(bh * 0.28, 36);
+                var h1x = bx + bw * 0.12, h2x = bx + bw * 0.88;
+                var hTop = by - hh * 0.15;
+                function drawHandle(sx) {
+                    ctx.strokeStyle = darkenColor(ac, 0.12); ctx.lineWidth = hw2 + 1; ctx.lineCap = 'round';
+                    ctx.beginPath(); ctx.moveTo(sx, by + 3);
+                    ctx.quadraticCurveTo(sx, hTop, sx - bw*0.02, hTop + hh*0.1); ctx.stroke();
+                    ctx.strokeStyle = ac; ctx.lineWidth = hw2;
+                    ctx.beginPath(); ctx.moveTo(sx, by + 3);
+                    ctx.quadraticCurveTo(sx, hTop, sx - bw*0.02, hTop + hh*0.1); ctx.stroke();
+                    ctx.strokeStyle = lightenColor(ac, 0.3); ctx.lineWidth = hw2 * 0.3;
+                    ctx.beginPath(); ctx.moveTo(sx, by + 3);
+                    ctx.quadraticCurveTo(sx, hTop, sx - bw*0.02, hTop + hh*0.1); ctx.stroke();
+                }
+                drawHandle(h1x); drawHandle(h2x);
+                var hl = parseFloat(document.getElementById('handleLength').value) || 30;
+                ctx.fillStyle = '#444'; ctx.font = 'bold 10px Arial'; ctx.textAlign = 'center';
+                ctx.fillText(hl + 'cm 提手', bx + bw/2, hTop - 6);
+            }
+
+            // Size badge
+            drawSizeBadge(ctx, bx + bw/2, by + bh/2, 150, 48, L.toFixed(0) + ' × ' + H.toFixed(0), '正面视图 (cm)');
+
+            // Label material name on body corner
+            var mName = groups[Object.keys(groups)[0]].fabric.name;
+            ctx.fillStyle = 'rgba(0,0,0,0.25)'; ctx.font = '10px Arial'; ctx.textAlign = 'left';
+            ctx.fillText(mName, bx + 10, by + bh - 10);
+
+            // === RIGHT SIDEBAR === 
+            var rx = 545, ry = 30, rw = 240;
+
+            // Cross-section card
+            var csH = 180;
+            ctx.fillStyle = '#fff'; ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 1;
+            ctx.beginPath(); rr(ctx, rx, ry, rw, csH, 7); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#444'; ctx.font = 'bold 11px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('横截面结构', rx + rw/2, ry + 16);
+
+            var lw = rw - 24, lx2 = rx + 12, ly2 = ry + 30, lh = 26, lg = 5;
+            function addLayer(color, label, wid) {
+                wid = wid || 1; var ww = lw * wid;
+                var llx = rx + (rw - ww)/2;
+                ctx.fillStyle = color;
+                ctx.beginPath(); rr(ctx, llx, ly2, ww, lh, 4); ctx.fill();
+                ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.lineWidth = 0.8;
+                ctx.beginPath(); rr(ctx, llx, ly2, ww, lh, 4); ctx.stroke();
+                ctx.fillStyle = '#fff'; ctx.font = 'bold 8px Arial'; ctx.textAlign = 'center';
+                ctx.fillText(label, rx + rw/2, ly2 + lh/2 + 3);
+                ly2 += lh + lg;
+            }
+            addLayer(mc, '表布（正面）');
+            for (var k3 in groups) {
+                if (groups[k3].fabric.id === 'batting') { addLayer(groups[k3].fabric.color, '铺棉'); break; }
+            }
+            addLayer(lc, '里布（内衬）');
+            ctx.fillStyle = '#888'; ctx.font = '8px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('▲ 外', rx + rw/2, ry + 8);
+            ctx.fillText('▼ 内', rx + rw/2, ly2 + 10);
+
+            // Fabric legend
+            drawFabricLegend(ctx, rx, ry + csH + 10, rw, groups);
+
+            // === BOTTOM: Three mini views === 
+            var mvY = 485, mvH = 80;
+            var mCols = 3, mGap = 15;
+            var mTotalW = mW - 40;
+            var mCellW = (mTotalW - mGap*(mCols-1)) / mCols;
+            var views = [
+                {label: '背面', dw: L, dh: H},
+                {label: '侧面', dw: W, dh: H},
+                {label: '底部', dw: L, dh: W},
+            ];
+            views.forEach(function(v, vi) {
+                var mvx = mLeft + vi * (mCellW + mGap);
+                ctx.fillStyle = '#fff'; ctx.strokeStyle = '#e8e8e8'; ctx.lineWidth = 1;
+                ctx.beginPath(); rr(ctx, mvx, mvY, mCellW, mvH, 5); ctx.fill(); ctx.stroke();
+                ctx.fillStyle = '#999'; ctx.font = '9px Arial'; ctx.textAlign = 'center';
+                ctx.fillText(v.label, mvx + mCellW/2, mvY - 4);
+
+                // Mini bag shape
+                var ms2 = Math.min((mvH-16) / Math.max(v.dh, 1), (mCellW-20) / Math.max(v.dw, 1)) * 0.78;
+                var mw2 = v.dw * ms2, mh2 = v.dh * ms2;
+                var mcx = mvx + mCellW/2, mcy = mvY + mvH/2;
+                ctx.fillStyle = lightenColor(mc, 0.05);
+                ctx.beginPath(); rr(ctx, mcx-mw2/2, mcy-mh2/2, mw2, mh2, 3); ctx.fill();
+                ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.lineWidth = 0.8;
+                ctx.beginPath(); rr(ctx, mcx-mw2/2, mcy-mh2/2, mw2, mh2, 3); ctx.stroke();
+                // Handles on back view
+                if (hasHandles && vi === 0) {
+                    ctx.strokeStyle = darkenColor(ac, 0.1); ctx.lineWidth = 1; ctx.lineCap = 'round';
+                    ctx.beginPath(); ctx.moveTo(mcx-mw2*0.3, mcy-mh2/2); ctx.quadraticCurveTo(mcx-mw2*0.3, mcy-mh2/2-8, mcx-mw2*0.4, mcy-mh2/2-9); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(mcx+mw2*0.3, mcy-mh2/2); ctx.quadraticCurveTo(mcx+mw2*0.3, mcy-mh2/2-8, mcx+mw2*0.4, mcy-mh2/2-9); ctx.stroke();
+                }
+                // Bottom center line
+                if (vi === 2) {
+                    ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = 0.5;
+                    ctx.setLineDash([1.5, 2]);
+                    ctx.beginPath(); ctx.moveTo(mcx-mw2*0.4, mcy); ctx.lineTo(mcx+mw2*0.4, mcy); ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+                ctx.fillStyle = '#666'; ctx.font = 'bold 8px Arial'; ctx.textAlign = 'center';
+                ctx.fillText(v.dw.toFixed(0)+'×'+v.dh.toFixed(0), mcx, mcy + 3);
+            });
+        }
+
+        // ============ DRAWSTRING BAG ============
+        function drawDrawstringBag(ctx, L, H, W, mc, ac, lc, groups) {
+            var cx = 270, cy = 310, bh = Math.min(H * 2.5, 420), bw = Math.min(W * 2.5, 200);
+            var rx = bw / 2, topY = cy - bh/2, botY = cy + bh/2;
+
+            // Shadow
+            ctx.fillStyle = 'rgba(0,0,0,0.06)';
+            ctx.beginPath(); ctx.ellipse(cx + 3, botY + 4, rx, rx*0.35, 0, 0, Math.PI*2); ctx.fill();
+
+            // Body
+            var g = ctx.createLinearGradient(cx - rx, 0, cx + rx, 0);
+            g.addColorStop(0, darkenColor(mc, 0.15));
+            g.addColorStop(0.3, lightenColor(mc, 0.08));
+            g.addColorStop(0.7, mc);
+            g.addColorStop(1, darkenColor(mc, 0.18));
+            ctx.fillStyle = g;
+            ctx.beginPath(); ctx.moveTo(cx - rx, topY); ctx.lineTo(cx + rx, topY);
+            ctx.lineTo(cx + rx, botY); ctx.lineTo(cx - rx, botY);
+            ctx.closePath(); ctx.fill();
+            ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.lineWidth = 2.5; ctx.stroke();
+
+            // Bottom ellipse
+            ctx.fillStyle = darkenColor(mc, 0.12);
+            ctx.beginPath(); ctx.ellipse(cx, botY, rx, rx*0.35, 0, 0, Math.PI*2); ctx.fill();
+            ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.lineWidth = 2; ctx.stroke();
+
+            // Gathered top opening
+            var gRx = rx * 0.5;
+            ctx.fillStyle = lc + '70';
+            ctx.beginPath(); ctx.ellipse(cx, topY, gRx, rx*0.2, 0, 0, Math.PI*2); ctx.fill();
+            ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 1.5; ctx.stroke();
+
+            // Casing line
+            ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 1;
+            ctx.setLineDash([3, 5]);
+            ctx.beginPath(); ctx.moveTo(cx - rx, topY + 10); ctx.lineTo(cx + rx, topY + 10); ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Drawstrings
+            ctx.strokeStyle = mc; ctx.lineWidth = 2; ctx.lineCap = 'round';
+            ctx.beginPath(); ctx.moveTo(cx - gRx, topY);
+            ctx.quadraticCurveTo(cx - rx*0.8, topY - rx*0.3, cx - rx*0.7, topY - rx*0.5); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx + gRx, topY);
+            ctx.quadraticCurveTo(cx + rx*0.8, topY - rx*0.3, cx + rx*0.7, topY - rx*0.5); ctx.stroke();
+
+            // Decorative rings
+            ctx.strokeStyle = 'rgba(255,255,255,0.2)'; ctx.lineWidth = 1;
+            ctx.setLineDash([2, 6]);
+            ctx.beginPath(); ctx.moveTo(cx - rx, topY + bh*0.07); ctx.lineTo(cx + rx, topY + bh*0.07); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx - rx, botY - bh*0.07); ctx.lineTo(cx + rx, botY - bh*0.07); ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Size badge
+            drawSizeBadge(ctx, cx, cy - 30, 130, 42, H.toFixed(0) + ' × ' + W.toFixed(0), '袋身 (cm)');
+
+            // Labels
+            ctx.fillStyle = '#555'; ctx.font = 'bold 12px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('束口绳', cx - rx*0.6, topY - rx*0.5);
+            ctx.fillText(L.toFixed(0)+'cm 底部周长', cx, botY + rx*0.35 + 16);
+
+            // Right sidebar
+            var rx2 = 560, ry2 = 30, rw2 = 225;
+            drawFabricLegend(ctx, rx2, ry2, rw2, groups);
+            // Cross-section
+            var csY2 = ry2 + 115;
+            ctx.fillStyle = '#fff'; ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 1;
+            ctx.beginPath(); rr(ctx, rx2, csY2, rw2, 100, 6); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#444'; ctx.font = 'bold 10px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('横截面', rx2 + rw2/2, csY2 + 14);
+            ctx.fillStyle = mc; ctx.beginPath(); rr(ctx, rx2+12, csY2+22, rw2-24, 24, 4); ctx.fill();
+            ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.lineWidth = 0.8;
+            ctx.beginPath(); rr(ctx, rx2+12, csY2+22, rw2-24, 24, 4); ctx.stroke();
+            ctx.fillStyle = '#fff'; ctx.font = 'bold 8px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('表布', rx2+rw2/2, csY2+22+12+3);
+            ctx.fillStyle = lc; ctx.beginPath(); rr(ctx, rx2+16, csY2+50, rw2-32, 22, 4); ctx.fill();
+            ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.lineWidth = 0.8;
+            ctx.beginPath(); rr(ctx, rx2+16, csY2+50, rw2-32, 22, 4); ctx.stroke();
+            ctx.fillStyle = '#fff'; ctx.font = 'bold 8px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('里布', rx2+rw2/2, csY2+50+11+3);
+            ctx.fillStyle = '#888'; ctx.font = '8px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('▲ 外', rx2+rw2/2, csY2+6);
+            ctx.fillText('▼ 内', rx2+rw2/2, csY2+86);
+        }
+
+        // ============ CUP SLEEVE ============
+        function drawCupSleeve(ctx, L, H, W, mc, groups) {
+            // Draw as a flat curved strip (unwrapped) with dotted fold lines
+            var cx = 280, cy = 300;
+            var stripW = Math.min(L * 3.0, 380);
+            var stripH = Math.min(H * 4.0, 200);
+            var sx = cx - stripW/2, sy = cy - stripH/2;
+
+            // Shadow
+            rectShadow(ctx, sx, sy, stripW, stripH);
+
+            // Main strip
+            ctx.fillStyle = mc;
+            ctx.beginPath(); rr(ctx, sx, sy, stripW, stripH, 8); ctx.fill();
+            noShadow(ctx);
+            ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.lineWidth = 2;
+            ctx.beginPath(); rr(ctx, sx, sy, stripW, stripH, 8); ctx.stroke();
+
+            // Fold / wrap lines (vertical dashes)
+            ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = 1;
+            ctx.setLineDash([3, 4]);
+            ctx.beginPath(); ctx.moveTo(sx + stripW*0.08, sy); ctx.lineTo(sx + stripW*0.08, sy + stripH); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(sx + stripW*0.92, sy); ctx.lineTo(sx + stripW*0.92, sy + stripH); ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Quilting lines (horizontal)
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 0.8;
+            for (var qi = 0; qi < 4; qi++) {
+                var qy = sy + stripH*0.15 + qi * stripH*0.22;
+                ctx.beginPath(); ctx.moveTo(sx + 10, qy); ctx.lineTo(sx + stripW - 10, qy); ctx.stroke();
+            }
+
+            // Size
+            ctx.fillStyle = '#222'; ctx.font = 'bold 14px Arial'; ctx.textAlign = 'center';
+            ctx.fillText(L.toFixed(0)+'×'+H.toFixed(0)+' cm', cx, cy + 4);
+            ctx.fillStyle = '#666'; ctx.font = '11px Arial';
+            ctx.fillText('展开图（虚线为折叠位）', cx, cy + 20);
+
+            // Bottom note
+            ctx.fillStyle = '#555'; ctx.font = 'bold 11px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('圆形底部 ⌀'+W.toFixed(0)+'cm', cx, sy + stripH + 24);
+
+            // Right sidebar
+            var rx = 530, ry = 30;
+            drawFabricLegend(ctx, rx, ry, 230, groups);
+        }
+
+        // ============ POTHOLDER ============
+        function drawPotholderView(ctx, L, H, mc, ac, lc, groups) {
+            var cx = 280, cy = 300, bl = Math.min(L * 4.0, 380), bh = Math.min(H * 4.0, 380);
+            var px = cx - bl/2, py = cy - bh/2;
+
+            // Shadow
+            rectShadow(ctx, px, py, bl, bh);
+
+            // Batting layer (slightly offset below)
+            var off = 6;
+            ctx.fillStyle = '#e8e8e8';
+            ctx.beginPath(); rr(ctx, px + off + 2, py + off + 2, bl, bh, 10); ctx.fill();
+            ctx.strokeStyle = 'rgba(0,0,0,0.08)'; ctx.lineWidth = 1;
+            ctx.beginPath(); rr(ctx, px + off + 2, py + off + 2, bl, bh, 10); ctx.stroke();
+
+            // Top fabric
+            ctx.fillStyle = mc;
+            ctx.beginPath(); rr(ctx, px, py, bl, bh, 10); ctx.fill();
+            noShadow(ctx);
+
+            // Quilting grid
+            ctx.strokeStyle = 'rgba(255,255,255,0.35)'; ctx.lineWidth = 1;
+            for (var qi2 = 1; qi2 < 5; qi2++) {
+                var qx2 = px + qi2 * bl/5;
+                ctx.beginPath(); ctx.moveTo(qx2, py + 5); ctx.lineTo(qx2, py + bh - 5); ctx.stroke();
+                var qy2 = py + qi2 * bh/5;
+                ctx.beginPath(); ctx.moveTo(px + 5, qy2); ctx.lineTo(px + bl - 5, qy2); ctx.stroke();
+            }
+
+            // Binding edge
+            ctx.strokeStyle = ac; ctx.lineWidth = 4;
+            ctx.beginPath(); rr(ctx, px, py, bl, bh, 10); ctx.stroke();
+            // Binding inner stitch
+            ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 1;
+            ctx.setLineDash([2, 3]);
+            ctx.beginPath(); rr(ctx, px + 5, py + 5, bl - 10, bh - 10, 7); ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Hanging loop (top-right corner)
+            ctx.strokeStyle = ac; ctx.lineWidth = 2; ctx.lineCap = 'round';
+            ctx.beginPath(); ctx.moveTo(px + bl, py + bh*0.15);
+            ctx.quadraticCurveTo(px + bl + 10, py + bh*0.05, px + bl + 8, py - bh*0.03); ctx.stroke();
+
+            // Size badge
+            drawSizeBadge(ctx, cx, cy, 140, 44, L.toFixed(0) + ' × ' + H.toFixed(0), '成品尺寸 (cm)');
+
+            // Layer labels
+            ctx.fillStyle = '#aaa'; ctx.font = '10px Arial'; ctx.textAlign = 'left';
+            ctx.fillText('表布', px + 8, py + bl + 20);
+            ctx.fillText('铺棉', px + off + 10, py + off + bl + 32);
+
+            // Right sidebar
+            var rx = 530, ry = 30;
+            drawFabricLegend(ctx, rx, ry, 230, groups);
+            // Cross-section
+            var csY = ry + 115;
+            ctx.fillStyle = '#fff'; ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 1;
+            ctx.beginPath(); rr(ctx, rx, csY, 230, 110, 6); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#444'; ctx.font = 'bold 10px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('横截面', rx + 115, csY + 14);
+            var lsY = csY + 22;
+            function addLs(color, label) {
+                ctx.fillStyle = color;
+                ctx.beginPath(); rr(ctx, rx+12, lsY, 206, 20, 4); ctx.fill();
+                ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.lineWidth = 0.8;
+                ctx.beginPath(); rr(ctx, rx+12, lsY, 206, 20, 4); ctx.stroke();
+                ctx.fillStyle = '#fff'; ctx.font = 'bold 8px Arial'; ctx.textAlign = 'center';
+                ctx.fillText(label, rx+115, lsY+10+4);
+                lsY += 24;
+            }
+            addLs(mc, '表布');
+            for (var kb in groups) { if (groups[kb].fabric.id === 'batting') { addLs(groups[kb].fabric.color, '铺棉'); break; } }
+            addLs(lc, '背面');
+            ctx.fillStyle = '#888'; ctx.font = '8px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('▲ 正面', rx + 115, csY + 8);
+        }
+
+        // ============ PENCIL CASE ============
+        function drawPencilCase(ctx, L, H, W, mc, ac, lc, groups) {
+            var cx = 280, cy = 310;
+            var tw = Math.min(L * 3.5, 380), bw2 = tw * 0.65, bh2 = Math.min(H * 4.0, 300);
+
+            // Shadow
+            rectShadow(ctx, cx - tw/2, cy - bh2/2, tw, bh2);
+
+            // Body (trapezoid)
+            var g = ctx.createLinearGradient(cx - tw/2, 0, cx + tw/2, 0);
+            g.addColorStop(0, darkenColor(mc, 0.08));
+            g.addColorStop(0.5, lightenColor(mc, 0.05));
+            g.addColorStop(1, darkenColor(mc, 0.15));
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.moveTo(cx - tw/2, cy - bh2/2); ctx.lineTo(cx + tw/2, cy - bh2/2);
+            ctx.lineTo(cx + bw2/2, cy + bh2/2); ctx.lineTo(cx - bw2/2, cy + bh2/2);
+            ctx.closePath(); ctx.fill();
+            noShadow(ctx);
+            ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.lineWidth = 2.5; ctx.stroke();
+
+            // Zipper at top
+            ctx.strokeStyle = '#bbb'; ctx.lineWidth = 2; ctx.setLineDash([3, 3]);
+            ctx.beginPath(); ctx.moveTo(cx - tw/2 + 10, cy - bh2/2);
+            ctx.lineTo(cx + tw/2 - 10, cy - bh2/2); ctx.stroke();
+            ctx.setLineDash([]);
+            // Zipper pull circle
+            ctx.fillStyle = '#ccc'; ctx.beginPath(); ctx.arc(cx, cy - bh2/2, 9, 0, Math.PI*2); ctx.fill();
+            ctx.strokeStyle = '#999'; ctx.lineWidth = 1.5; ctx.stroke();
+            ctx.fillStyle = '#666'; ctx.font = 'bold 7px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('拉链', cx, cy - bh2/2 + 3);
+
+            // Inner stitch
+            ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+            ctx.beginPath();
+            var ins = 8;
+            ctx.moveTo(cx - tw/2 + ins, cy - bh2/2 + ins);
+            ctx.lineTo(cx + tw/2 - ins, cy - bh2/2 + ins);
+            ctx.lineTo(cx + bw2/2 - ins, cy + bh2/2 - ins);
+            ctx.lineTo(cx - bw2/2 + ins, cy + bh2/2 - ins);
+            ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Side panel line
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(cx - bw2*0.25, cy - bh2/2);
+            ctx.lineTo(cx - bw2*0.3, cy + bh2/2); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(cx + bw2*0.25, cy - bh2/2);
+            ctx.lineTo(cx + bw2*0.3, cy + bh2/2); ctx.stroke();
+
+            // Size
+            drawSizeBadge(ctx, cx, cy, 140, 44, L.toFixed(0) + ' × ' + H.toFixed(0), '正面视图 (cm)');
+
+            // Bottom label
+            ctx.fillStyle = '#555'; ctx.font = 'bold 11px Arial'; ctx.textAlign = 'center';
+            ctx.fillText('底部宽 ' + W.toFixed(0) + 'cm', cx, cy + bh2/2 + 18);
+
+            // Right sidebar
+            var rx = 530, ry = 30;
+            drawFabricLegend(ctx, rx, ry, 230, groups);
+        }
+
+        // ---- Cutting Layout ----
+        function drawCuttingLayout(pieces, l, h, w, productType) {
+            var canvas = document.getElementById('layoutCanvas');
+            console.log('drawCuttingLayout: canvas=', !!canvas, 'pieces=', pieces ? pieces.length : 0);
+            if (!canvas || !pieces || pieces.length === 0) return;
+            var groups2 = groupByFabric(pieces);
+            var fabricIds2 = Object.keys(groups2).filter(function(k) { return groups2[k].pieces.length > 0; });
+            console.log('fabricIds2:', fabricIds2.length, fabricIds2);
+            if (fabricIds2.length === 0) return;
+
+            var dpr = window.devicePixelRatio || 1;
+            var DW2 = Math.min(700, Math.max(320, (window.innerWidth || 800) - 44));
+            var mX = 18, gapX2 = 10, gapY2 = 12;
+            var cols2 = Math.min(3, Math.max(1, Math.floor((DW2 - mX*2) / 155)));
+
+            // Calculate max piece dims for scaling
+            var mw = 0, mh = 0;
+            pieces.forEach(function(pp) { if (pp.width > mw) mw = pp.width; if (pp.height > mh) mh = pp.height; });
+            var cellW2 = Math.floor((DW2 - mX*2 - gapX2*(cols2-1)) / cols2);
+            var cellH2 = 128;
+            var sc2 = Math.min((cellW2 - 20) / Math.max(mw, 1), (cellH2 - 38) / Math.max(mh, 1), 2.2);
+
+            // Calculate height
+            var tr2 = 0;
+            fabricIds2.forEach(function(fid2) { tr2 += Math.ceil(groups2[fid2].pieces.length / cols2); });
+            // Each fabric group: header (32px) + piece rows (cellH2+gapY2 each)
+            var DH2 = 20; // top padding
+            DH2 += fabricIds2.length * 32; // all headers
+            DH2 += tr2 * (cellH2 + gapY2); // all piece rows
+            DH2 += (fabricIds2.length - 1) * 14; // separators
+            DH2 += 40; // bottom padding + footer
+            DH2 = Math.max(280, DH2);
+            console.log('Estimated DH2:', DH2, 'tr2:', tr2);
+
+            canvas.width = DW2 * dpr; canvas.height = DH2 * dpr;
+            canvas.style.width = DW2 + 'px'; canvas.style.height = DH2 + 'px';
+            var ctx2 = canvas.getContext('2d'); ctx2.scale(dpr, dpr);
+            ctx2.clearRect(0, 0, DW2, DH2);
+            ctx2.fillStyle = '#fafafa'; ctx2.fillRect(0, 0, DW2, DH2);
+
+            var cy2 = 12;
+            fabricIds2.forEach(function(fid2, fi2) {
+                var g2 = groups2[fid2];
+                var fp2 = g2.pieces;
+                if (fp2.length === 0) return;
+                // Header
+                var hdrW = DW2 - mX * 2;
+                ctx2.fillStyle = g2.fabric.color; ctx2.fillRect(mX, cy2, hdrW, 24);
+                ctx2.fillStyle = '#fff'; ctx2.font = 'bold 11px Arial'; ctx2.textAlign = 'left';
+                ctx2.fillText(g2.fabric.name + '  ' + fp2.length + '种裁片  |  幅宽'+(g2.fabric.width||110)+'cm', mX + 10, cy2 + 16);
+                cy2 += 32;
+                // Pieces grid
+                fp2.forEach(function(piece, idx2) {
+                    var col2 = idx2 % cols2;
+                    var row2 = Math.floor(idx2 / cols2);
+                    var px2 = mX + col2 * (cellW2 + gapX2);
+                    var py2 = cy2 + row2 * (cellH2 + gapY2);
+                    var pw2 = piece.width * sc2;
+                    var ph2 = piece.height * sc2;
+                    var pdx2 = px2 + (cellW2 - pw2) / 2;
+                    var pdy2 = py2 + (cellH2 - ph2) / 2 + 3;
+
+                    // Card background
+                    ctx2.fillStyle = '#fff'; ctx2.strokeStyle = '#e8e8e8'; ctx2.lineWidth = 0.8;
+                    ctx2.fillRect(px2 + 1, py2 + 1, cellW2 - 2, cellH2 - 2);
+                    ctx2.strokeRect(px2 + 1, py2 + 1, cellW2 - 2, cellH2 - 2);
+
+                    // Piece shape
+                    ctx2.fillStyle = piece.color + '50'; ctx2.strokeStyle = piece.color; ctx2.lineWidth = 1.8;
+                    var shape2 = piece.shape || 'rect';
+                    ctx2.beginPath();
+                    if (shape2 === 'circle') { ctx2.arc(pdx2+pw2/2, pdy2+ph2/2, pw2/2, 0, Math.PI*2); }
+                    else if (shape2 === 'trapezoid') {
+                        var bw3 = (piece.bottomWidth || piece.width*0.65) * sc2;
+                        ctx2.moveTo(pdx2, pdy2); ctx2.lineTo(pdx2+pw2, pdy2);
+                        ctx2.lineTo(pdx2+pw2-(pw2-bw3)/2, pdy2+ph2); ctx2.lineTo(pdx2+(pw2-bw3)/2, pdy2+ph2);
+                    } else if (shape2 === 'rounded') {
+                        var cr2 = Math.min((piece.cornerRadius||3)*sc2, pw2/4, ph2/4);
+                        ctx2.moveTo(pdx2+cr2,pdy2); ctx2.lineTo(pdx2+pw2-cr2,pdy2);
+                        ctx2.arcTo(pdx2+pw2,pdy2,pdx2+pw2,pdy2+cr2,cr2);
+                        ctx2.lineTo(pdx2+pw2,pdy2+ph2-cr2);
+                        ctx2.arcTo(pdx2+pw2,pdy2+ph2,pdx2+pw2-cr2,pdy2+ph2,cr2);
+                        ctx2.lineTo(pdx2+cr2,pdy2+ph2);
+                        ctx2.arcTo(pdx2,pdy2+ph2,pdx2,pdy2+ph2-cr2,cr2);
+                        ctx2.lineTo(pdx2,pdy2+cr2);
+                        ctx2.arcTo(pdx2,pdy2,pdx2+cr2,pdy2,cr2);
+                    } else if (shape2 === 'notched') {
+                        var nl2=piece.notchLeft||{depth:0,height:0,top:0};
+                        var nr2=piece.notchRight||{depth:0,height:0,top:0};
+                        var nld2=nl2.depth*sc2,nlh2=nl2.height*sc2,nlt2=nl2.top*sc2;
+                        var nrd2=nr2.depth*sc2,nrh2=nr2.height*sc2,nrt2=nr2.top*sc2;
+                        ctx2.moveTo(pdx2,pdy2);
+                        if(nld2>0){ctx2.lineTo(pdx2,pdy2+nlt2);ctx2.lineTo(pdx2+nld2,pdy2+nlt2);ctx2.lineTo(pdx2+nld2,pdy2+nlt2+nlh2);ctx2.lineTo(pdx2,pdy2+nlt2+nlh2);}
+                        ctx2.lineTo(pdx2,pdy2+ph2);ctx2.lineTo(pdx2+pw2,pdy2+ph2);
+                        if(nrd2>0){ctx2.lineTo(pdx2+pw2,pdy2+nrt2+nrh2);ctx2.lineTo(pdx2+pw2-nrd2,pdy2+nrt2+nrh2);ctx2.lineTo(pdx2+pw2-nrd2,pdy2+nrt2);ctx2.lineTo(pdx2+pw2,pdy2+nrt2);}
+                        ctx2.lineTo(pdx2+pw2,pdy2);
+                    } else { ctx2.rect(pdx2, pdy2, pw2, ph2); }
+                    ctx2.closePath(); ctx2.fill(); ctx2.stroke();
+
+                    // Fold lines
+                    var msw2 = piece.mergeSideWidth ? piece.mergeSideWidth * sc2 : 0;
+                    if (msw2 > 0) {
+                        ctx2.strokeStyle = 'rgba(0,0,0,0.35)'; ctx2.lineWidth = 1;
+                        ctx2.setLineDash([3,3]);
+                        ctx2.beginPath(); ctx2.moveTo(pdx2+msw2,pdy2); ctx2.lineTo(pdx2+msw2,pdy2+ph2); ctx2.stroke();
+                        ctx2.beginPath(); ctx2.moveTo(pdx2+pw2-msw2,pdy2); ctx2.lineTo(pdx2+pw2-msw2,pdy2+ph2); ctx2.stroke();
+                        ctx2.setLineDash([]);
+                    }
+
+                    // Grain arrow
+                    var gcx2=pdx2+pw2/2, gcy2=pdy2+ph2/2, alen2=Math.min(10,ph2*0.18);
+                    ctx2.strokeStyle='rgba(0,0,0,0.18)'; ctx2.lineWidth=0.7;
+                    ctx2.setLineDash([2,2]);
+                    ctx2.beginPath(); ctx2.moveTo(gcx2,gcy2+alen2); ctx2.lineTo(gcx2,gcy2-alen2); ctx2.stroke();
+                    ctx2.setLineDash([]);
+                    ctx2.beginPath(); ctx2.moveTo(gcx2-2,gcy2-alen2+3); ctx2.lineTo(gcx2,gcy2-alen2); ctx2.lineTo(gcx2+2,gcy2-alen2+3); ctx2.stroke();
+
+                    // Labels
+                    ctx2.fillStyle='#333'; ctx2.font='bold 9px Arial'; ctx2.textAlign='center';
+                    ctx2.fillText(piece.name, pdx2+pw2/2, py2+10);
+                    ctx2.fillStyle='#777'; ctx2.font='8px Arial';
+                    var dt2 = piece.width.toFixed(1)+'×'+piece.height.toFixed(1);
+                    if (shape2==='circle') dt2 = '⌀'+(piece.diameter||piece.width).toFixed(1);
+                    ctx2.fillText(dt2, pdx2+pw2/2, pdy2+ph2+12);
+                    if (piece.count > 1) ctx2.fillText('×'+piece.count, pdx2+pw2/2, pdy2+ph2+21);
+                });
+                cy2 += Math.ceil(fp2.length / cols2) * (cellH2 + gapY2) + 10;
+                // Separator
+                if (fi2 < fabricIds2.length - 1) {
+                    ctx2.strokeStyle='#e0e0e0'; ctx2.lineWidth=1; ctx2.setLineDash([6,4]);
+                    ctx2.beginPath(); ctx2.moveTo(mX+10, cy2); ctx2.lineTo(DW2-mX-10, cy2); ctx2.stroke();
+                    ctx2.setLineDash([]); cy2 += 14;
+                }
+            });
+            cy2 += 6;
+            ctx2.fillStyle='#aaa'; ctx2.font='10px Arial'; ctx2.textAlign='center';
+            ctx2.fillText('裁剪展开图 — 箭号为布纹经向，虚线为折叠线  ' + cy2.toFixed(0) + 'px', DW2/2, cy2);
+            // Diagnostic: draw visible border to confirm rendering
+            ctx2.strokeStyle = '#4CAF50'; ctx2.lineWidth = 2;
+            ctx2.strokeRect(1, 1, DW2 - 2, cy2 + 8);
+            console.log('drawCuttingLayout complete, cy2:', cy2, 'canvas:', canvas.width, 'x', canvas.height);
+        }
+
+        function renderFabricManager() {
+            ensureFabrics();
+            var container = document.getElementById('fabricManager');
+            container.innerHTML = fabrics.map(function(f, i) {
+                var w = f.width || 110;
+                var ml = f.maxLength || '';
+                var del = fabrics.length > 1
+                    ? '<button class="btn-del-fabric" onclick="removeFabric('+i+')" title="删除">×</button>'
+                    : '';
+                return '<div class="fabric-row">'+
+                    '<input type="color" value="'+f.color+'" onchange="updateFabric('+i+',\'color\',this.value);">'+
+                    '<input type="text" value="'+esc(f.name)+'" placeholder="名称" onchange="updateFabric('+i+',\'name\',this.value);">'+
+                    '<div class="fabric-dim"><input type="number" value="'+w+'" min="20" max="300" step="5" onchange="updateFabric('+i+',\'width\',parseFloat(this.value)||110);"><span class="dim-unit">cm 幅宽</span></div>'+
+                    '<div class="fabric-dim"><input type="number" value="'+ml+'" min="0" step="5" placeholder="无限" onchange="updateFabric('+i+',\'maxLength\',parseFloat(this.value)||null);"><span class="dim-unit">cm 长</span></div>'+
+                    del+
+                '</div>';
+            }).join('');
+        }
+
+        function addFabric() {
+            ensureFabrics();
+            const colors = ['#667eea','#43e97b','#f5576c','#f093fb','#4facfe','#fa709a','#fee140','#764ba2'];
+            const usedColors = new Set(fabrics.map(f => f.color));
+            const nextColor = colors.find(c => !usedColors.has(c)) || '#667eea';
+            const idx = fabrics.length + 1;
+            var newFabric = { id: 'fabric_' + (_fabricIdCounter++), name: '面料' + idx, color: nextColor, width: 110, maxLength: null };
+            fabrics.push(newFabric);
+            renderFabricManager();
+            // Append option to existing fabric selects without innerHTML replacement
+            var opt = document.createElement('option');
+            opt.value = newFabric.id;
+            opt.textContent = newFabric.name;
+            document.querySelectorAll('.fabric-select').forEach(function(sel) { sel.appendChild(opt.cloneNode(true)); });
+            savePreferences();
+        }
+
+        function removeFabric(idx) {
+            ensureFabrics();
+            if (fabrics.length <= 1) return;
+            const removedId = fabrics[idx].id;
+            fabrics.splice(idx, 1);
+            const fallbackId = fabrics[0].id;
+            if (customPieces.length) {
+                customPieces.forEach(p => { if (p.fabricId === removedId) p.fabricId = fallbackId; });
+            }
+            renderFabricManager();
+            // Rebuild editor to remove old fabric options and show updated selections
+            renderCustomEditor();
+            savePreferences();
+        }
+
+        function updateFabric(idx, field, value) {
+            if (idx < fabrics.length) {
+                fabrics[idx][field] = value;
+                renderFabricManager();
             }
         }
 
         function renderCustomEditor() {
-            const list = document.getElementById('customPieceList');
-            const pieces = customPieces.length ? customPieces : defaultCustomPieces();
-            customPieces = pieces;
-            const shapes = [{v:'rect',n:'矩形'},{v:'trapezoid',n:'梯形'},{v:'circle',n:'圆形'},{v:'rounded',n:'圆角矩形'}];
+            var list = document.getElementById('customPieceList');
+            ensureFabrics();
 
-            list.innerHTML = pieces.map((p, i) => `
-                <div class="custom-piece-item">
-                    <input type="text" value="${esc(p.name)}" placeholder="名称" onchange="updateCustomPiece(${i},'name',this.value)">
-                    <span style="font-size:0.75rem;color:#999;text-align:center;">×${p.count}</span>
-                    <input type="number" value="${p.width.toFixed(1)}" step="0.5" placeholder="宽cm" onchange="updateCustomPiece(${i},'width',parseFloat(this.value))">
-                    <input type="number" value="${p.height.toFixed(1)}" step="0.5" placeholder="高cm" onchange="updateCustomPiece(${i},'height',parseFloat(this.value))">
-                    <select onchange="updateCustomPiece(${i},'shape',this.value)">
-                        ${shapes.map(s => `<option value="${s.v}" ${p.shape===s.v?'selected':''}>${s.n}</option>`).join('')}
-                    </select>
-                    <button class="btn-remove-piece" onclick="removeCustomPiece(${i})" title="删除">×</button>
-                </div>
-            `).join('');
+            // Assign default fabricId to any piece missing it (backward compat)
+            var defaultFid = fabrics[0] ? fabrics[0].id : 'fabric_a';
+            customPieces.forEach(function(p) { if (!p.fabricId) p.fabricId = defaultFid; });
+
+            var shapes = [{v:'rect',n:'矩形'},{v:'trapezoid',n:'梯形'},{v:'circle',n:'圆形'},{v:'rounded',n:'圆角矩形'},{v:'notched',n:'凹槽异形'}];
+            list.innerHTML = customPieces.map(function(p, i) {
+                var shapeOpts = shapes.map(function(s) { return '<option value="'+s.v+'"'+(p.shape===s.v?' selected':'')+'>'+s.n+'</option>'; }).join('');
+                var fabOpts = fabrics.map(function(f) { return '<option value="'+f.id+'"'+(p.fabricId===f.id?' selected':'')+'>'+f.name+'</option>'; }).join('');
+                return '<div class="custom-piece-item">'+
+                    '<input type="text" value="'+esc(p.name)+'" placeholder="名称" onchange="customPieces['+i+'].name=this.value">'+
+                    '<span style="font-size:0.75rem;color:#999;text-align:center;">×'+p.count+'</span>'+
+                    '<input type="number" value="'+p.width.toFixed(1)+'" step="0.5" placeholder="宽" onchange="customPieces['+i+'].width=parseFloat(this.value)||10">'+
+                    '<input type="number" value="'+p.height.toFixed(1)+'" step="0.5" placeholder="高" onchange="customPieces['+i+'].height=parseFloat(this.value)||10">'+
+                    '<select onchange="customPieces['+i+'].shape=this.value">'+shapeOpts+'</select>'+
+                    '<select class="fabric-select" onchange="customPieces['+i+'].fabricId=this.value;savePreferences()">'+fabOpts+'</select>'+
+                    '<button class="btn-remove-piece" onclick="removeEditorPiece('+i+')" title="删除">×</button>'+
+                '</div>';
+            }).join('');
         }
 
-        function defaultCustomPieces() {
-            return [
-                {name:'前片',count:1,width:22,height:22,shape:'rect',color:'#667eea',description:''},
-                {name:'后片',count:1,width:22,height:22,shape:'rect',color:'#764ba2',description:''},
-            ];
+        function removeEditorPiece(idx) {
+            customPieces.splice(idx, 1);
+            if (customPieces.length === 0) {
+                customPieces.push({_uid:nextPieceUid(), name:'裁片1', count:1, width:10, height:10, shape:'rect', color:'#aabbcc', description:'', fabricId:(fabrics[0]?fabrics[0].id:'fabric_a')});
+            }
+            renderCustomEditor();
+            savePreferences();
         }
 
         function addCustomPiece() {
-            customPieces.push({name:'新裁片',count:1,width:10,height:10,shape:'rect',color:'#aabbcc',description:''});
+            ensureFabrics();
+            const fA = fabrics[0] ? fabrics[0].id : 'fabric_a';
+            var uid = nextPieceUid();
+            customPieces.push({_uid:uid, name:'新裁片', count:1, width:10, height:10, shape:'rect', color:'#aabbcc', description:'', fabricId:fA});
             renderCustomEditor();
+            savePreferences();
         }
 
-        function removeCustomPiece(idx) {
-            customPieces.splice(idx, 1);
-            if (customPieces.length === 0) customPieces = defaultCustomPieces();
+        function resetPiecesToDefaults() {
+            var l = parseFloat(document.getElementById('length').value) || 0;
+            var h = parseFloat(document.getElementById('height').value) || 0;
+            var w = parseFloat(document.getElementById('width').value) || 0;
+            var seam = parseFloat(document.getElementById('seamAllowance').value) || 1;
+            var hl = parseFloat(document.getElementById('handleLength').value) || 30;
+            var hw = parseFloat(document.getElementById('handleWidth').value) || 4;
+            customPieces = calculatePieces(l, h, w, seam, hl, hw);
+            assignPieceUids(customPieces);
             renderCustomEditor();
+            savePreferences();
         }
 
-        function updateCustomPiece(idx, field, value) {
-            if (idx < customPieces.length) {
-                customPieces[idx][field] = value;
-                if (field === 'name') customPieces[idx].description = customPieces[idx].description || '';
-            }
-        }
+        function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
         function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
