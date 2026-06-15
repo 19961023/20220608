@@ -3156,7 +3156,7 @@
             var defaultFid = fabrics[0] ? fabrics[0].id : 'fabric_a';
             customPieces.forEach(function(p) { if (!p.fabricId) p.fabricId = defaultFid; });
 
-            var shapes = [{v:'rect',n:'矩形'},{v:'trapezoid',n:'梯形'},{v:'circle',n:'圆形'},{v:'rounded',n:'圆角矩形'},{v:'notched',n:'凹槽异形'}];
+            var shapes = [{v:'rect',n:'矩形'},{v:'trapezoid',n:'梯形'},{v:'circle',n:'圆形'},{v:'rounded',n:'圆角矩形'}];
             list.innerHTML = customPieces.map(function(p, i) {
                 var shapeOpts = shapes.map(function(s) { return '<option value="'+s.v+'"'+(p.shape===s.v?' selected':'')+'>'+s.n+'</option>'; }).join('');
                 var fabOpts = fabrics.map(function(f) { return '<option value="'+f.id+'"'+(p.fabricId===f.id?' selected':'')+'>'+f.name+'</option>'; }).join('');
